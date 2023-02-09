@@ -5,9 +5,9 @@ import Profile from '~/pages/Profile';
 import Upload from '~/pages/Upload';
 import {HeaderOnly} from '~/components/Layout'
 import Search from '~/pages/Search';
+
+
 // Publish routes
-
-
 const publishRoutes =[
     { path:'/', component: Home },
     { path:'/following', component: Following },
@@ -16,6 +16,8 @@ const publishRoutes =[
     { path:'/Search', component: Search, layout: null }
 
 ]
+
+// Private routes
 const privatehRoutes =[
 
 ]
