@@ -21,10 +21,12 @@
         filter: invert(1)
     }
 }
-
+.search,
+.search-result{
+    width: 361px;
+}
 .search{
     position: relative;
-    width: 361px;
     height: 46px;
     display: flex;
     align-items: center;
@@ -58,6 +60,8 @@
         border-color: rgba(22,24,35,0.2); ;
     }
 }
+
+
 .clear-search,
 .loading{
     position: absolute;
@@ -86,4 +90,11 @@
     &:active{
         background: rgba(22, 24, 35, 0.06);
     }
+}
+.search-title{
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
 }
