@@ -15,7 +15,22 @@ import Menu from '~/components/Poper/Menu';
 const MENU_ITEMS = [
     {
         title:'English', 
-        icon: <FontAwesomeIcon icon={faEarthAsia} />
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        children:{
+            title:'Languages',
+            data:[
+                {
+                    code:'en',
+                    title:'English',
+                    type:'language'
+                }, 
+                {
+                    code:'vi',
+                    title:'Tiếng Việt',
+                    type:'language'
+                }
+            ]
+        }
     },
     {
         title:'Feedback and help', 
@@ -40,6 +55,17 @@ function Header() {
             setResultSearch([])
         }, 0)
     }, [])
+
+    const handleMenuChange = (menuItem) =>{
+        switch(menuItem.type){
+            case 'language':
+            ///
+             break;
+
+            default:
+
+        }
+    }
 
     return <header className={cx('wrapper')}>
         <div className={cx('inner')}>
@@ -85,7 +111,7 @@ function Header() {
             <div className={cx('actions')}>
                 <Button text >Upload</Button>
                 <Button primary size=''  >Log in </Button>
-                <Menu dataMenu={MENU_ITEMS}>
+                <Menu onChange={handleMenuChange} items={MENU_ITEMS}>
                     <button className={cx('more-btn')}>
                         <FontAwesomeIcon icon={faEllipsisVertical} />
                     </button>
