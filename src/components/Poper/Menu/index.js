@@ -29,7 +29,6 @@ function Menu({items =[] ,children ,hideOnClick =false ,onChange = defaultOnchan
     }
     return ( 
         <Tippy
-           
             placement='bottom-end'
             delay={[0,700]}
             offset={[12, 8]}
@@ -41,7 +40,10 @@ function Menu({items =[] ,children ,hideOnClick =false ,onChange = defaultOnchan
                       { history.length > 1 &&   <Header title='Languages' onBack={()=>{
                           setHistory(prev =>prev.slice(0,prev.length-1))
                       }}/>}
+                      <div className={cx('wrapper-menu-item')}>
                         {renderItems()}
+                      </div>
+                      
                     </PopperWrapper>
 
                 </div>

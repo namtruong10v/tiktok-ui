@@ -34,6 +34,7 @@
     position: relative;
     height: 50px;
     margin-top: -8px;
+    flex-shrink: 0;
 }
 
 .back-btn{
@@ -48,4 +49,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+}
+
+.wrapper-menu-item{
+    overflow-y: auto;
 }
