@@ -1,4 +1,4 @@
-
+import configRoutes from '~/config/routes';
 import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Profile from '~/pages/Profile';
@@ -9,11 +9,11 @@ import Search from '~/pages/Search';
 
 // Publish routes
 const publishRoutes =[
-    { path:'/', component: Home },
-    { path:'/following', component: Following },
-    { path:'/@/:nickname', component: Profile },
-    { path:'/upload', component: Upload, layout: HeaderOnly },
-    { path:'/Search', component: Search, layout: null }
+    { path:configRoutes.home, component: Home },
+    { path:configRoutes.following, component: Following },
+    { path:configRoutes.profile, component: Profile },
+    { path:configRoutes.update, component: Upload, layout: HeaderOnly },
+    { path:configRoutes.search, component: Search, layout: null }
 
 ]
 

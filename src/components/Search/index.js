@@ -49,8 +49,20 @@ function Search() {
         inputRef.current.focus();
         setResultSearch([])
     }
+
+
     const handleHideResult = () => {
         setShowResult(false)
+    }
+
+    const handleValue = (e) => {
+        const searchValue = e.target.value;
+        if(!searchValue.startsWith(' ')){
+
+            setSearchValue(searchValue);
+        }
+
+
     }
     return (
         <HasslessTippy
@@ -76,11 +88,7 @@ function Search() {
                     ref={inputRef}
                     value={searchValue}
                     placeholder='Search accout and videos '
-                    onChange={(e) => {
-                        setSearchValue(e.target.value);
-
-
-                    }}
+                    onChange={handleValue}
                     onFocus={() => {
                         setShowResult(true)
                     }}
@@ -99,7 +107,7 @@ function Search() {
 
 
 
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e)=>{e.preventDefault()}}>
 
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
 
