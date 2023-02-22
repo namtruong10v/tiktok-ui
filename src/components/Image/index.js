@@ -1,7 +1,7 @@
 import {forwardRef , useState} from 'react';
 import images from '~/assets/images';
 
-console.log(images.noImage,'hahaha')
+
 function Image({src ,fallBack : currentFallBack = images.noImage, ...props},ref) {
 
   
