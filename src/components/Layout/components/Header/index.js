@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faEarListen, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faCloudUpload, faUser, faCoins, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons';
-import HasslessTippy from '@tippyjs/react/headless';
+import {faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faCloudUpload, faUser, faCoins, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
@@ -10,9 +9,10 @@ import classNames from 'classnames/bind';
 import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import { Wrapper as PopperWrapper } from '~/components/Poper';
-import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Poper/Menu';
+import { MesengerIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
+import Search from '~/components/Search';
 
 
 const MENU_ITEMS = [
@@ -52,14 +52,8 @@ const MENU_ITEMS = [
 const cx = classNames.bind(styles)
 
 function Header() {
-    const [resultSearch, setResultSearch] = useState([])
+   
     const isLogin = true;
-    useEffect(() => {
-        setTimeout(() => {
-            setResultSearch([])
-        }, 0)
-    }, [])
-
     const handleMenuChange = (menuItem) =>{
         switch(menuItem.type){
             case 'language':
@@ -101,42 +95,9 @@ function Header() {
             <div className={cx('logo')}>
                 <img src={images.logo} alt='Tiktok' />
             </div>
-            <HasslessTippy
-                visible={resultSearch.length > 0}
-                interactive={true}
-                render={(attrs) => (
-                    <div className={cx('search-result')} tabIndex='-1' {...attrs}>
-                        <PopperWrapper>
-                            <h4 className={cx('search-title')}>Accout</h4>
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
-                        </PopperWrapper>
 
-                    </div>
-                )} >
-
-                <div className={cx('search')}>
-                    <input placeholder='Search accout and videos ' />
-                    <button className={cx('clear-search')}>
-
-                        <FontAwesomeIcon icon={faCircleXmark} />
-
-                    </button>
-
-                    <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-
-
-
-                    <button className={cx('search-btn')}>
-
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-
-                    </button>
-
-                </div>
-            </HasslessTippy>
+          
+           <Search />
                     
 
             <div className={cx('actions')}>
@@ -148,14 +109,25 @@ function Header() {
                         content='Upload video'
                         placement='bottom'
                       >
+                           <button className={cx('action-btn', 'action-outline')}>
+                             <UploadIcon />
+                             Upload
+                           </button>
+                      </Tippy>
+
+                      <Tippy
+                       delay={[0,300]}
+                        content='Messenger'
+                        placement='bottom'
+                      >
                            <button className={cx('action-btn')}>
-                               <FontAwesomeIcon icon={faCloudUpload} />
+                            <MesengerIcon />
                            </button>
                       </Tippy>
                     </>
                      :
                     <>
-                        <Button text >Upload</Button>
+                        <Button text  >Upload</Button>
                         <Button primary size=''  >Log in </Button>
                     </>
                    
@@ -163,7 +135,12 @@ function Header() {
                  <Menu onChange={handleMenuChange}   items={isLogin ? userMenu : MENU_ITEMS}>
                      {isLogin ?
                      (
-                        <img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K' className={cx('user-avatar')} alt=''/>
+                        <Image 
+                            src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iasdasdasdHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288ssL3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K' 
+                            className={cx('user-avatar')} 
+                            alt=''
+                            // fallBack='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K'
+                        />
                      )
                      :
                      (

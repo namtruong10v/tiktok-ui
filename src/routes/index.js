@@ -11,7 +11,7 @@ import Search from '~/pages/Search';
 const publishRoutes =[
     { path:'/', component: Home },
     { path:'/following', component: Following },
-    { path:'/profile', component: Profile },
+    { path:'/@/:nickname', component: Profile },
     { path:'/upload', component: Upload, layout: HeaderOnly },
     { path:'/Search', component: Search, layout: null }
 
