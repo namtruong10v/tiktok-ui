@@ -1,0 +1,46 @@
+.button-sumbit{
+    background-color: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+    width: 100%;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-login-width-social-fb{
+    background-color: #3b5998;
+    width: 100%;
+    padding: 10px 16px;
+    color: var(--white);
+    border-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    
+}
+.button-login-width-social-gg{
+    background-color:rgb(66, 133, 244);
+    width: 100%;
+    padding: 10px 16px;
+    color: var(--white);
+    border-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    
+}
+.forgotPass{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+// profile

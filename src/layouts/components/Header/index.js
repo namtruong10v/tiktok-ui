@@ -1,10 +1,14 @@
 
+import { useEffect ,useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faCloudUpload, faUser, faCoins, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons';
+import {faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faCloudUpload, faUser, faCoins, faGear, faSignOut, faFaceAngry } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
+import  app  from '~/firebase';
+import { getAuth ,onAuthStateChanged  } from "firebase/auth";
+
 
 import Button from '~/components/Button';
 import styles from './Header.module.scss';
@@ -13,7 +17,11 @@ import Menu from '~/components/Poper/Menu';
 import { MesengerIcon, UploadIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '~/components/Search';
-import config from '~/config'
+import config from '~/config';
+
+
+
+
 
 const MENU_ITEMS = [
     {
@@ -27,6 +35,7 @@ const MENU_ITEMS = [
                     title:'English',
                     type:'language'
                 }, 
+
                 {
                     code:'vi',
                     title:'Tiếng Việt',
@@ -53,9 +62,36 @@ const MENU_ITEMS = [
 
 const cx = classNames.bind(styles)
 
+const auth = getAuth(app);
+
+
+
 function Header() {
+
+    const navigate = useNavigate()
+    const [isLogin , setIsLogin] = useState(false);
+
+
+    useEffect(()=>{
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setIsLogin(true)
+                console.log(auth.currentUser.photoURL,'auth.currentUser.photoURL');
+            } else {
+                setIsLogin(false)
+            }
+        });
+
+    },[auth.currentUser])
+
    
-    const isLogin = true;
+   
+
+    
+    
+    
+    
+    
     const handleMenuChange = (menuItem) =>{
         switch(menuItem.type){
             case 'language':
@@ -87,10 +123,14 @@ function Header() {
         {
             title:'Log out', 
             icon: <FontAwesomeIcon icon={faSignOut} />,
-            to:'/logout',
+           
             separate:true
         },
     ]
+
+  
+
+   
 
     return <header className={cx('wrapper')}>
         <div className={cx('inner')}>
@@ -113,10 +153,12 @@ function Header() {
                         content='Upload video'
                         placement='bottom'
                       >
-                           <button className={cx('action-btn', 'action-outline')}>
-                             <UploadIcon />
-                             Upload
-                           </button>
+                           <Link to='/upload'>
+                               <button className={cx('action-btn', 'action-outline')}>
+                                 <UploadIcon />
+                                 Upload
+                               </button>
+                           </Link>
                       </Tippy>
 
                       <Tippy
@@ -131,16 +173,22 @@ function Header() {
                     </>
                      :
                     <>
-                        <Button text  >Upload</Button>
-                        <Button primary size=''  >Log in </Button>
+                        <Button text to='/login'  >Upload</Button>
+                        
+                        <button onClick={()=>{navigate('/login')}}  className={cx('primary','large')}  >
+                            Log in
+                        </button>
+                       
+                       
                     </>
                    
                 }
                  <Menu onChange={handleMenuChange}   items={isLogin ? userMenu : MENU_ITEMS}>
+                    
                      {isLogin ?
                      (
                         <Image 
-                            src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iasdasdasdHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288ssL3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K' 
+                            src={auth.currentUser.photoURL ? auth.currentUser.photoURL : images.noImage}
                             className={cx('user-avatar')} 
                             alt=''
                             // fallBack='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K'

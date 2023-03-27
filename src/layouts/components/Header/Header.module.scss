@@ -76,3 +76,16 @@
     cursor: pointer;
 }
 
+.primary{
+    background-color: var(--primary);
+    color:var(--white);
+    border-color:var(--primary);
+    min-width:88px ;
+    padding: 10px 16px;
+    &:hover{
+        border-color:var(--primary);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),#FE2C55;
+    }
+}
+
+

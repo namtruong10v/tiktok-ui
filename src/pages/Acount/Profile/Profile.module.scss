@@ -1,0 +1,262 @@
+.wrapper{
+    margin-top:30px;
+}
+
+.infor_user{
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 624px;
+    margin-bottom: 20px;
+    padding-right: 92px;
+
+    .avatar_user{
+        width: 116px;
+        height: 116px;
+        display: inline-block;
+        box-sizing: border-box;
+        margin-right: 15px;
+        padding: 0;
+        font-feature-settings: "tnum";
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        white-space: nowrap;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 32px;
+        border-radius: 50%;
+        background-color: rgba(136, 136, 136, 0.5);
+        border-color: rgba(22, 24, 35, .12);
+        border-width: 0.5px;
+        cursor: pointer;
+
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+    .infor_name_box{
+
+        .infor_name{
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 38px;
+            margin-bottom: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: left;
+            word-break: break-word;
+
+        }
+        .infor_email{
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 25px;
+            text-overflow: ellipsis;
+            height: 25px;
+            overflow: hidden;
+            max-width: 450px;
+            white-space: nowrap;
+            margin-bottom: 15px;
+        }
+
+        .actions{
+            display: flex;
+            align-items: center;
+        }
+        .action-btn{
+            background-color: transparent;
+            font-size: 2.2rem;
+            color: #161823;
+            padding:7px 15px;
+            cursor: pointer;
+        }
+        .action-outline{
+            display: flex;
+            align-items: center;
+            border-radius: 2px;
+            border: 1px solid rgba(22,24,35,0.12);
+            background-color: white;
+            font-size: 1.6rem;
+            
+        }
+        .btn-edit-profile{
+            font-weight: 600;
+        }
+
+        
+        
+        
+    }
+
+    
+}
+.video-user_list{
+    display: flex;
+    flex-wrap: wrap;
+    .viddeo_control_box{
+        position: relative;
+        .video-user{
+          
+            width: 147px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin: 20px 15px;
+
+            
+        }
+        .deleteVideo_user{
+            position: absolute;
+            z-index: 9;
+            top: 0;
+            right: 0;
+            background-color: none;
+            color:var(--primary);
+            cursor: pointer;
+            
+        }
+        .editVideo_user{
+            position: absolute;
+            z-index: 9;
+            top: 0;
+            right: 20px;
+            background-color: none;
+            color:green;
+            cursor: pointer;
+        }
+    }
+}
+
+// Modal
+
+.wrapper_modal{
+    .change-flies-box{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .img-avatar_change{
+            width: 96px;
+            height: 96px;
+            object-fit: cover;
+            border-radius: 50%;
+    
+        }
+        .img-avatar_change2{
+            width: 96px;
+            height: 96px;
+            object-fit: cover;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            opacity: 1;
+        }
+
+        .input-avatar_change{
+            margin-top: 30px;
+
+        }
+
+    }
+    
+    
+
+}
+.wrapper_modal2 {
+    .video-preview{
+    width: 247px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+    }
+    .input[type=file]{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        margin: 30px 0px;
+    }
+    input[type=file]::file-selector-button {
+        margin-right: 20px;
+        border: none;
+        background-color: var(--tux-colorPrimary);
+        border-color: var(--tux-colorPrimary);
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        transition: background .2s ease-in-out;
+    
+    }
+    
+    input[type=file]::file-selector-button:hover {
+        background-color: var(--tux-colorPrimary);
+        border-color: var(--tux-colorPrimary);
+    }
+    .description_video{
+        width: 100%;
+        background-color: #ffffff;
+        border: 1px solid #d9d9d9;
+        transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+        height: 32px;
+        border-radius: 6px;
+        padding-left: 12px;
+        margin: 30px 0px;
+    }
+    .wrapper_modal{
+        position: relative;
+    }
+    .lds-ring {
+        position: absolute;
+    
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rbga(0,0,0,0.3);
+        z-index: 999;
+        background: rgba(0,0,0,0.6);
+    }
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid #fff;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #fff transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+        0% {
+        transform: rotate(0deg);
+        }
+        100% {
+        transform: rotate(360deg);
+        }
+  }
+}
