@@ -1,11 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, setDoc, doc, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, doc, addDoc } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 import { getDownloadURL, getStorage ,ref, uploadBytes } from "firebase/storage";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import { async } from "@firebase/util";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

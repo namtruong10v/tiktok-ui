@@ -8,14 +8,13 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 import images from '~/assets/images';
-import Button from '~/components/Button';
 import Input from '~/components/Input';
 import { useAuth, upload } from '~/firebase';
-import { collection,getFirestore, query, where, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { collection,getFirestore, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { uploadVideo } from "~/firebase";
 import { faPencilSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { openNotificationSuccess } from '~/components/Notification';
-import { async } from '@firebase/util';
+
 
 
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Button, Form, Input , notification , Modal} from 'antd';
+import { Button, Form, Input , Modal} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import Password from 'antd/es/input/Password';
+
 import styles from '../../Acount/Acount.module.scss';
 import classNames from 'classnames/bind';
 import { Link, useNavigate } from 'react-router-dom';
