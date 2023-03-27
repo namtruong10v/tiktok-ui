@@ -8,6 +8,7 @@ import Login from '~/pages/Acount/Login';
 import Register from '~/pages/Acount/Register';
 import Profile from '~/pages/Acount/Profile';
 import Admin from '~/pages/Admin';
+import Live from '~/pages/Live';
 
 
 // Publish routes
@@ -20,6 +21,7 @@ const publishRoutes =[
     { path:config.routes.login, component: Login},
     { path:config.routes.register, component: Register},
     { path:config.routes.admin, component: Admin, layout:null},
+    { path:config.routes.live, component: Live},
     
     
 
