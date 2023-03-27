@@ -1,2 +1,0 @@
-# tiktok-ui
-#sssss
