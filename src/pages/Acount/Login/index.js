@@ -9,11 +9,10 @@ import {openNotificationSuccess ,openNotificationErorr} from '~/components/Notif
 import images from '~/assets/images';
 import config from '~/config';
 import  app  from '~/firebase';
-import { getAuth, signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail, FacebookAuthProvider } from "firebase/auth";
 import { Input2 } from '~/components/Input';
 
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
 const cx = classNames.bind(styles)
 
 function Login(){
@@ -60,8 +59,10 @@ function Login(){
         console.log('Failed:', errorInfo);
      };
 
-    
+    // login = google
      const loginGoogleHandel = () =>{
+
+      const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
         .then((result) => {
           // This gives you a Google Access Token. You can use it to access the Google API.
@@ -86,6 +87,36 @@ function Login(){
           // ...
         });
      }
+
+     // login = facbook
+     const loginFacebookHandel = () =>{
+      const provider = new FacebookAuthProvider();
+       
+       signInWithPopup(auth, provider)
+        .then((result) => {
+          // The signed-in user info.
+          const user = result.user;
+
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          const credential = FacebookAuthProvider.credentialFromResult(result);
+          const accessToken = credential.accessToken;
+
+          // IdP data available using getAdditionalUserInfo(result)
+          // ...
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = FacebookAuthProvider.credentialFromError(error);
+
+          // ...
+        });
+     }
+
      const showModal = () => {
       setIsModalOpen(true);
       };
@@ -177,7 +208,7 @@ function Login(){
                
             </div>
             <div style={{marginBottom:15}}>
-                <button  className={cx('button-login-width-social-fb')}>
+                <button onClick={loginFacebookHandel} className={cx('button-login-width-social-fb')}>
                     <img src={images.facebook} style={{marginRight:15}} />
                     <span> Đăng nhập với FaceBook</span>
                     
