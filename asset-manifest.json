@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tiktok-ui/static/css/main.c25772c0.css",
-    "main.js": "/tiktok-ui/static/js/main.6f5ed694.js",
+    "main.js": "/tiktok-ui/static/js/main.5cfb53dd.js",
     "static/js/787.4c9d15e8.chunk.js": "/tiktok-ui/static/js/787.4c9d15e8.chunk.js",
     "static/media/sofiapro-semibold.otf": "/tiktok-ui/static/media/sofiapro-semibold.a9a8148f7d5d0db20db8.otf",
     "static/media/Proxima-Nova-Regular.woff2": "/tiktok-ui/static/media/Proxima-Nova-Regular.6c83037ae28747e6d774.woff2",
@@ -11,11 +11,11 @@
     "static/media/facebook.svg": "/tiktok-ui/static/media/facebook.f1b483f6c1162a19dbcbb41c476cc7ab.svg",
     "index.html": "/tiktok-ui/index.html",
     "main.c25772c0.css.map": "/tiktok-ui/static/css/main.c25772c0.css.map",
-    "main.6f5ed694.js.map": "/tiktok-ui/static/js/main.6f5ed694.js.map",
+    "main.5cfb53dd.js.map": "/tiktok-ui/static/js/main.5cfb53dd.js.map",
     "787.4c9d15e8.chunk.js.map": "/tiktok-ui/static/js/787.4c9d15e8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c25772c0.css",
-    "static/js/main.6f5ed694.js"
+    "static/js/main.5cfb53dd.js"
   ]
 }
