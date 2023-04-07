@@ -1,15 +1,10 @@
-// Import the functions you need from the SDKs you need
 import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, addDoc } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
-import { getDownloadURL, getStorage ,ref, uploadBytes } from "firebase/storage";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCPX7gFZy8XXYLfopuYQJZehesEGLkrMx8",
   authDomain: "tiktok-ui-d0849.firebaseapp.com",
@@ -23,78 +18,66 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const storage = getStorage()
+export const auth = getAuth();
+export const storage = getStorage();
+export const firestore = getFirestore();
 
 export const analytics = getAnalytics(app);
 
-export function useAuth(){
+export function useAuth() {
   const [currentUser, seCurrentUser] = useState();
 
-  useEffect( ()=> {
+  useEffect(() => {
     const unsub = onAuthStateChanged(auth, user => seCurrentUser(user));
     return unsub;
-  },[])
+  }, [])
   return currentUser;
-}
-
-export function signUp(email, password){
-  return createUserWithEmailAndPassword (auth,email,password);
-}
-export function login(email, password) {
-  return signInWithEmailAndPassword (auth,email,password);
 
 }
 
-export function logout(){
-  return signOut(auth);
-}
 
 
 // storage
-export async function upload(file,currentUser , setLoading ,nameUser) {
-  const fileRef = ref(storage , currentUser.uid + '.png');
+export async function upload(file, currentUser, setLoading, nameUser) {
+  const fileRef = ref(storage, currentUser.uid + '.png');
   setLoading(true);
 
-  const snapshot = await uploadBytes(fileRef,file);
- const photoURL = await getDownloadURL(fileRef);
- console.log(photoURL,'photoURL')
+  const snapshot = await uploadBytes(fileRef, file);
+  const photoURL = await getDownloadURL(fileRef);
 
   updateProfile(currentUser, {
-    photoURL:photoURL,
+    photoURL: photoURL,
     displayName: nameUser,
   })
   setLoading(false);
 
-  
-   window.location.href='/profile'
+
+  window.location.href = '/profile'
 }
 
-export async function uploadVideo(file,currentUser,setLoading) {
-    const fileRef = ref(storage ,`videos/${file.name}${Math.random()} `);
-    setLoading(true);
-    const snapshot = await uploadBytes(fileRef,file);
-    const urlVideo = await getDownloadURL(fileRef);
-    
+export async function uploadVideo(file, setLoading) {
+  const fileRef = ref(storage, `videos/${file.name}${Math.random()} `);
+  setLoading(true);
+  const snapshot = await uploadBytes(fileRef, file);
+  const urlVideo = await getDownloadURL(fileRef);
+
   setLoading(false);
- return urlVideo;
+  return urlVideo;
 }
 
-const firestore = getFirestore();
-const specialOfTheDay = doc(firestore,'user/videos/');
-const postVideos = collection(firestore,"postVideo")
+const postVideos = collection(firestore, "postVideo")
 
 // upload Video 
 
-export async function writeUpdateVideo(fileUpdate){
+export async function writeUpdateVideo(fileUpdate) {
   const docData = fileUpdate;
-  try{
+  try {
 
     await addDoc(postVideos, docData);
     console.log('upload video thanh cong')
   }
-  catch(error){
-    console.log('co loi',error)
+  catch (error) {
+    console.log('co loi', error)
   }
 
 }

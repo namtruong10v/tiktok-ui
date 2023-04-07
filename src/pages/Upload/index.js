@@ -18,47 +18,13 @@ const cx = classNames.bind(styles)
 
 function Upload() {
     const currentUser = useAuth();
-
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [video, setVideo] = useState('');
     const [tagsVideo, setTagsVideo] = useState({});
-    const [dataVideo, setDataVideo] = useState({
-        id: '',
-        title: "",
-        account: {
-            id: '',
-            name_acount: '',
-            nick_name: '',
-            image: ''
-        },
-        music: '',
-        hastag: {},
-        src_video: '',
-        tick: false
-    });
     const [description, setDescription] = useState('');
 
-    useEffect(() => {
-        if (currentUser) {
-            //    console.log(currentUser.uid)
-            setDataVideo({
-                id: Math.random(),
-                title: description,
-                account: {
-                    id: currentUser.uid,
-                    name_acount: currentUser.displayName,
-                    nick_name: currentUser.email,
-                    image: currentUser.photoURL != null ? currentUser.photoURL : images.noImage
-                },
-                music: '',
-                hastag: tagsVideo,
-                src_video: video,
-                tick: true,
-            })
 
-        }
-    }, [currentUser])
 
 
     const showModal = () => {
@@ -99,12 +65,7 @@ function Upload() {
     };
 
     const options = [];
-    for (let i = 10; i < 36; i++) {
-        options.push({
-            value: i.toString(36) + i,
-            label: i.toString(36) + i,
-        });
-    }
+
 
     const handleChange = (value) => {
         setTagsVideo(value);
@@ -115,7 +76,7 @@ function Upload() {
         const file = e.target.files[0];
 
         file.preview = URL.createObjectURL(file);
-        const urlFile = await uploadVideo(file, currentUser, setLoading)
+        const urlFile = await uploadVideo(file, setLoading)
         setVideo(urlFile);
     }
 
