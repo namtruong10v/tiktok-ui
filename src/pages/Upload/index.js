@@ -47,6 +47,7 @@ function Upload() {
                 hastag: tagsVideo,
                 src_video: video,
                 tick: true,
+                heart: 0
             });
             console.log('thành công');
             setLoading(false);

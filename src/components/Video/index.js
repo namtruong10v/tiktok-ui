@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { faCheckCircle, faMusic } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,20 +7,39 @@ import styles from './Video.module.scss';
 import classNames from 'classnames/bind';
 import Button from '../Button';
 
+import { doc, updateDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+
+
 const cx = classNames.bind(styles)
 
-function Video({ id, title, account, music, hastag, src_video, tick }) {
-    const [heart, setHeart] = useState(0);
+function Video({ id, title, account, music, hastag, src_video, tick, hearts }) {
+    const firestore = getFirestore();
+    const frankDocRef = doc(firestore, "postVideo", `${id}`);
+
+
+
+    const [heart, setHeart] = useState(hearts);
     const [active, setActive] = useState(false)
 
-    const handleHeart = () => {
+    const handleHeart = async () => {
         setActive(!active);
         if (!active) {
-            setHeart(heart + 1)
+            setHeart(heart + 1);
+            await updateDoc(frankDocRef, {
+                "heart": heart + 1,
+
+            });
         } else {
-            setHeart(heart - 1)
+            setHeart(heart - 1);
+            await updateDoc(frankDocRef, {
+                "heart": heart - 1,
+
+            });
         }
     }
+
+
 
     return (
         <div className={cx('recommend-list-item-container')}>
