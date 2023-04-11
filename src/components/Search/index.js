@@ -15,7 +15,7 @@ import * as searchSeivces from '~/services/searchSevice'
 const cx = classNames.bind(styles)
 
 
-function Search() { 
+function Search() {
     const [searchValue, setSearchValue] = useState('')
     const [resultSearch, setResultSearch] = useState([])
     const [showResult, setShowResult] = useState(true)
@@ -25,24 +25,24 @@ function Search() {
 
     const inputRef = useRef();
 
-    useEffect(() => {
-        if (!debounced.trim()) {
-            setResultSearch([])
-            return;
-        }
+    // useEffect(() => {
+    //     // if (!debounced.trim()) {
+    //     //     setResultSearch([])
+    //     //     return;
+    //     // }
 
-       const fetchApi = async () =>{
-            setLoadding(true)
+    //     // const fetchApi = async () => {
+    //     //     setLoadding(true)
 
-           const result = await searchSeivces.search(debounced)
-           setResultSearch(result);
+    //     //     const result = await searchSeivces.search(debounced)
+    //     //     setResultSearch(result);
 
-           setLoadding(false)
-       }
-     
-       fetchApi()
+    //     //     setLoadding(false)
+    //     // }
 
-    }, [debounced])
+    //     // fetchApi()
+
+    // }, [debounced])
 
     const handleClear = () => {
         setSearchValue('');
@@ -57,7 +57,7 @@ function Search() {
 
     const handleValue = (e) => {
         const searchValue = e.target.value;
-        if(!searchValue.startsWith(' ')){
+        if (!searchValue.startsWith(' ')) {
 
             setSearchValue(searchValue);
         }
@@ -75,16 +75,16 @@ function Search() {
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accout</h4>
                             {resultSearch.map((result) => {
-    
+
                                 return <AccountItem key={result.id} data={result} />
                             })}
                         </PopperWrapper>
-    
+
                     </div>
                 )}
                 onClickOutside={handleHideResult}
             >
-    
+
                 <div className={cx('search')}>
                     <input
                         ref={inputRef}
@@ -103,18 +103,18 @@ function Search() {
                             <FontAwesomeIcon icon={faCircleXmark} />
                         </button>
                     )}
-    
-    
+
+
                     {loadding && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-    
-    
-    
-                    <button className={cx('search-btn')} onMouseDown={(e)=>{e.preventDefault()}}>
-    
+
+
+
+                    <button className={cx('search-btn')} onMouseDown={(e) => { e.preventDefault() }}>
+
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
-    
+
                     </button>
-    
+
                 </div>
             </HasslessTippy>
         </div>
