@@ -39,7 +39,9 @@ export function useAuth() {
 
 // storage
 export async function upload(file, currentUser, setLoading, nameUser) {
-  const fileRef = ref(storage, currentUser.uid + '.png');
+
+  console.log(file, currentUser, setLoading, nameUser, 'thông tin upload')
+  const fileRef = ref(storage, `images/${currentUser.uid}${file.name}`);
   setLoading(true);
 
   const snapshot = await uploadBytes(fileRef, file);
@@ -48,7 +50,8 @@ export async function upload(file, currentUser, setLoading, nameUser) {
   updateProfile(currentUser, {
     photoURL: photoURL,
     displayName: nameUser,
-  })
+  });
+
   setLoading(false);
 
 

@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from './Video.module.scss';
 import classNames from 'classnames/bind';
 import Button from '../Button';
+import images from '~/assets/images';
 
 import { doc, updateDoc, arrayUnion, onSnapshot } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
@@ -84,7 +85,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
         const updateCommebt = {
             account: currentUser.uid,
             name_acount: currentUser.displayName,
-            src_account: currentUser.photoURL,
+            src_account: currentUser.photoURL != null ? currentUser.photoURL : images.noImage,
             content_comment: comment,
             create_time: creatTime
         }
@@ -189,7 +190,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                             </div>
                         </div>
                         <div className={cx('user-comment')}>
-                            <img src={currentUser.photoURL} />
+                            <img src={currentUser.photoURL != null ? currentUser.photoURL : images.noImage} />
                             <input value={comment} ref={inputRef} onChange={(e) => { setComment(e.target.value) }} placeholder='Viết bình luận' />
                             <button onClick={handleSentComment}>Gửi</button>
                         </div>
@@ -198,7 +199,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                             {
                                 addComment.map((comment, index) => (
                                     <div key={index} className={cx('list-comment')}>
-                                        <img src='https://firebasestorage.googleapis.com/v0/b/tiktok-ui-d0849.appspot.com/o/C7gcWIC4JKVQnLJAhCOl2xhithF2.png?alt=media&token=8b513c94-0ef0-4433-ba6c-0dc3c4b725a1' />
+                                        <img src={comment.src_account != null ? comment.src_account : images.noImage} />
                                         <div className={cx('name-content')}>
                                             <p>{comment.name_acount}
                                                 <span>{comment.create_time}</span>
