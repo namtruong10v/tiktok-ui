@@ -47,9 +47,9 @@ function Upload() {
                 hastag: tagsVideo,
                 src_video: video,
                 tick: true,
-                heart: 0
+                heart: 0,
+                comments: []
             });
-            console.log('thành công');
             setLoading(false);
             setIsModalOpen(false);
             openNotificationSuccess("topRight", 'Thành công !', 'Video của bạn đã được tải lên !')

@@ -103,3 +103,100 @@
     display: flex;
     align-items: center;
 }
+.wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+
+    .modal-box {
+        padding: 20px 30px;
+        background-color: white;
+        width: 600px;
+        max-width: 600px;
+        max-height: 80%;
+        .title_action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            h2 {
+                font-size: 20px;
+                font-weight: 500;
+            }
+            span {
+                font-size: 16px;
+                font-weight: 300;
+                margin-left: 15px;
+                opacity: 0.6;
+            }
+        }
+
+        .user-comment {
+            display: flex;
+            align-items: center;
+
+            img {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 15px;
+            }
+            input {
+                border-bottom: 1px solid;
+                width: 100%;
+                padding: 10px;
+            }
+            button {
+                padding: 10px;
+                margin-left: 15px;
+                background-color: var(--primary);
+                color: white;
+                font-weight: 700;
+                cursor: pointer;
+            }
+        }
+        .list-comments {
+            max-height: 500px;
+            overflow-y: scroll;
+
+            .list-comment {
+                display: flex;
+
+                margin-top: 30px;
+                img {
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin-right: 15px;
+                }
+                .name-content {
+                    p {
+                        font-weight: bold;
+                        display: flex;
+                        align-items: center;
+
+                        span {
+                            font-size: 14px;
+                            font-weight: 200;
+                            margin-left: 15px;
+                            opacity: 0.7;
+                        }
+                    }
+                    .content-user-comment {
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+}

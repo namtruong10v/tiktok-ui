@@ -20,7 +20,6 @@ function Home() {
         }
         fechVideo();
     }, [])
-    console.log(videos, 'hahah')
     return (
         <div className="wrapper">
 
@@ -36,6 +35,7 @@ function Home() {
                         src_video={item.data().src_video}
                         tick={item.data().tick}
                         hearts={item.data().heart}
+                        comments={item.data().comments}
                     />
                 ))
             }
