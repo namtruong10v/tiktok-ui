@@ -1,7 +1,10 @@
-.wrapper{
+.wrapper {
     width: 356px;
-    
+
     .tiktok-1rvr9ul-NavMainNavContainer {
+        position: sticky;
+        top: 100px;
+        bottom: 0;
         margin-bottom: 8px;
         padding: 0;
 
@@ -10,25 +13,18 @@
             margin: 0;
             list-style-type: none;
 
-
             .tiktok-12zznuq-StyledLink-StyledTmpLink {
                 display: flex;
                 align-items: center;
                 justify-content: start;
-                margin:20px 0px;
+                margin: 20px 0px;
 
-                .tiktok-138u7nq-SpanMainNavText{
+                .tiktok-138u7nq-SpanMainNavText {
                     margin-left: 16px;
                     font-size: 20px;
                     font-weight: bold;
                 }
             }
-            
-          
         }
-       
-
     }
-    
-    
 }
