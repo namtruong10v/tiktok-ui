@@ -9,7 +9,7 @@ import classNames from 'classnames/bind';
 import Button from '../Button';
 import images from '~/assets/images';
 
-import { doc, updateDoc, arrayUnion, onSnapshot } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, arrayRemove, onSnapshot } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { useAuth } from '~/firebase';
 
@@ -21,6 +21,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
 
 
     const currentUser = useAuth();
+
 
     const firestore = getFirestore();
     const frankDocRef = doc(firestore, "postVideo", `${id}`);
@@ -95,16 +96,44 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                     updateCommebt
                 )
             });
+
             setAddComment([...addComment, updateCommebt]);
             setComment('')
             inputRef.current.focus()
-            console.log(addComment, 'addcomment');
 
 
         } catch (error) {
 
         }
 
+    }
+
+
+    const handleDeleteComment = async (cmt) => {
+        try {
+            await updateDoc(frankDocRef, {
+                comments: arrayRemove(cmt)
+            });
+
+            const newComment = [...addComment];
+            const index = newComment.indexOf(cmt);
+            newComment.splice(index, 1);
+            setAddComment(newComment)
+
+        } catch (error) {
+
+        }
+    }
+
+
+    const handleLikeComment = async () => {
+        try {
+
+
+
+        } catch (error) {
+
+        }
     }
 
 
@@ -197,6 +226,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
 
                         <div className={cx('list-comments')}>
                             {
+
                                 addComment.map((comment, index) => (
                                     <div key={index} className={cx('list-comment')}>
                                         <img src={comment.src_account != null ? comment.src_account : images.noImage} />
@@ -207,7 +237,16 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                                             <div className={cx('content-user-comment')}>
                                                 {comment.content_comment}
                                             </div>
+                                            <div className={cx('action-comment')}>
+                                                {
+                                                    currentUser.uid === comment.account && (<button onClick={() => { handleDeleteComment(comment) }}>Xóa</button>)
+                                                }
+
+                                                <button onClick={handleLikeComment}>Thích</button>
+                                            </div>
                                         </div>
+
+
                                     </div>
 
                                 ))
