@@ -1,10 +1,11 @@
 .recommend-list-item-container {
     display: flex;
     margin-top: 30px;
-
+    height: 100%;
     padding: 20px 0;
     position: relative;
     max-width: 692px;
+    // align-items: center;
 
     .image-acount {
         display: block;
@@ -60,10 +61,12 @@
         display: flex;
         align-items: center;
         .video-play {
-            width: 294px;
+            max-width: 90%;
+            width: 420px;
             height: 525px;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: 8px;
+            background-color: black;
         }
         .action-of-video {
             margin-left: 15px;

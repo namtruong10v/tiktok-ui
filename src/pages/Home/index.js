@@ -1,9 +1,13 @@
-import { useState, useEffect } from 'react';
-import Video from "~/components/Video"
+import { useState, useEffect, useRef } from 'react';
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import './Home.Module.scss'
+
+import Video from "~/components/Video"
 import { collection, getFirestore, getDocs } from "firebase/firestore";
 
-
+import { Mousewheel } from "swiper";
 
 function Home() {
 
@@ -23,8 +27,19 @@ function Home() {
     return (
         <div className="wrapper">
 
+            {/* <Swiper
+                direction={"vertical"}
+                slidesPerView={1}
+                spaceBetween={30}
+                mousewheel={true}
+
+                modules={[Mousewheel]}
+                className="mySwiper"
+                style={{ height: '100vh', minHeight: '1000px' }}
+            > */}
             {
                 videos.map((item, index) => (
+                    // <SwiperSlide key={index}>
                     <Video
                         key={index}
                         id={item.id}
@@ -37,8 +52,13 @@ function Home() {
                         hearts={item.data().heart}
                         comments={item.data().comments}
                     />
+
+                    // </SwiperSlide>
+
                 ))
             }
+            {/* </Swiper> */}
+
 
 
 

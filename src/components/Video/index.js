@@ -60,7 +60,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
             setShowModal(true);
 
         } else {
-            alert('Vui lòng đăng nhập ')
+            alert('Vui lòng đăng nhập !')
         }
     }
 
@@ -156,6 +156,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                 <div className={cx('video-recomend-box')}>
                     <div className={cx('video-recomend-infor-acount', 'd-flex-aitems-center')}>
                         <div className={cx('infor-box')}>
+
                             <Link id={account.id} className={cx('d-flex-aitems-center')}>
                                 <p className={cx('account_nick_name')}>
                                     {account.nick_name} {tick && <FontAwesomeIcon className={cx('icon-check')} icon={faCheckCircle} />}
@@ -215,6 +216,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                 </div>
 
             </div>
+
             {showModal && currentUser &&
                 <div onClick={() => { setShowModal(false) }} className={cx('wrapper')}>
                     <div onClick={(e) => { e.stopPropagation() }} className={cx('modal-box')}>
