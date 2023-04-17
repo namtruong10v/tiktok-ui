@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { faCheckCircle, faMusic } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faClose, faMusic } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -108,6 +108,14 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
 
     }
 
+    const handleEnterKey = (e) => {
+        if (e.key === 'Enter') {
+            handleSentComment()
+        }
+    }
+
+
+
 
     const handleDeleteComment = async (cmt) => {
         try {
@@ -178,7 +186,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                     </div>
 
                     <div className={cx('video-box')} style={{ marginTop: 15 }}>
-                        <video id={id} title={title} className={cx('video-play')} preload='true' src={src_video} controls playsInline></video>
+                        <video id={id} title={title} className={cx('video-play')} preload='true' src={src_video} controls playsInline loop></video>
                         <div className={cx('action-of-video')}>
                             <button onClick={handleHeart} className={cx('btn-action-heart')}>
                                 {active ?
@@ -214,20 +222,20 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                             <h2>Bình luận
                                 <span>{addComment.length}</span>
                             </h2>
-                            <div onClick={() => { setShowModal(false) }} className='action-close'>
-                                Close
+                            <div onClick={() => { setShowModal(false) }} className={cx('action-close')}>
+                                <FontAwesomeIcon icon={faClose} />
                             </div>
                         </div>
                         <div className={cx('user-comment')}>
                             <img src={currentUser.photoURL != null ? currentUser.photoURL : images.noImage} />
-                            <input value={comment} ref={inputRef} onChange={(e) => { setComment(e.target.value) }} placeholder='Viết bình luận' />
+                            <input onKeyDown={handleEnterKey} value={comment} ref={inputRef} onChange={(e) => { setComment(e.target.value) }} placeholder='Viết bình luận' />
                             <button onClick={handleSentComment}>Gửi</button>
                         </div>
 
                         <div className={cx('list-comments')}>
                             {
 
-                                addComment.map((comment, index) => (
+                                addComment.slice(0).reverse().map((comment, index) => (
                                     <div key={index} className={cx('list-comment')}>
                                         <img src={comment.src_account != null ? comment.src_account : images.noImage} />
                                         <div className={cx('name-content')}>
