@@ -12,6 +12,8 @@ const cx = classNames.bind(styles)
 
 
 function Profile() {
+
+
     let { id } = useParams();
 
 
@@ -25,6 +27,7 @@ function Profile() {
             const q = collection(firestore, "postVideo");
             const data = await getDocs(q);
             setVideos(data.docs.filter((doc) => doc.data().account.id === id));
+            setUser(videos[0].data())
         }
         fechVideo();
 
