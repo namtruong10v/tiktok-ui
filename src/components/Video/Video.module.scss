@@ -199,7 +199,32 @@
                         }
                     }
                     .content-user-comment {
+                        position: relative;
+                        display: inline-block;
                         margin-top: 5px;
+                        padding: 5px 15px;
+                        border-radius: 8px;
+                        background-color: #f0f2f5;
+
+                        .tym-of-comm {
+                            position: absolute;
+                            right: -47px;
+                            bottom: 0px;
+                            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                            background-color: white;
+                            padding: 3px 10px;
+                            font-size: 14px;
+                            border-radius: 15px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            img {
+                                width: 18px;
+                                height: 18px;
+                                margin-right: 5px;
+                            }
+                        }
                     }
                     .action-comment {
                         button {

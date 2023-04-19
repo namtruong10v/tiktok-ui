@@ -35,7 +35,7 @@ function Home() {
 
                 modules={[Mousewheel]}
                 className="mySwiper"
-                style={{ height: '100vh', minHeight: '1000px' }}
+                style={{ height: '100vh' }}
             > */}
             {
                 videos.map((item, index) => (
@@ -53,16 +53,13 @@ function Home() {
                         comments={item.data().comments}
                     />
 
-                    // </SwiperSlide>
+                    //</SwiperSlide>
 
                 ))
             }
             {/* </Swiper> */}
-
-
-
-
         </div>
+
     )
 }
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import classNames from "classnames/bind";
 import styles from './Upload.module.scss';
 import { Modal, Select } from 'antd';

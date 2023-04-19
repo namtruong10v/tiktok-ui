@@ -1,12 +1,14 @@
 
 
-function Search(){
+function Search() {
+
+
     return (
         <div>
-             
+
             <h2>Search page</h2>
         </div>
-       
+
     )
 }
 

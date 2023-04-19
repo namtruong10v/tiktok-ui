@@ -22,7 +22,6 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
 
     const currentUser = useAuth();
 
-
     const firestore = getFirestore();
     const frankDocRef = doc(firestore, "postVideo", `${id}`);
 
@@ -32,9 +31,8 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
     const [active, setActive] = useState(false);
     const [comment, setComment] = useState('')
     const [addComment, setAddComment] = useState(comments)
-
     const [showModal, setShowModal] = useState(false);
-
+    // const [heartCommnet, setHeartCommnet] = useState(0)
 
     const handleHeart = async () => {
         setActive(!active);
@@ -88,7 +86,8 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
             name_acount: currentUser.displayName,
             src_account: currentUser.photoURL != null ? currentUser.photoURL : images.noImage,
             content_comment: comment,
-            create_time: creatTime
+            create_time: creatTime,
+            hearts: 0
         }
         try {
             await updateDoc(frankDocRef, {
@@ -134,14 +133,11 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
     }
 
 
-    const handleLikeComment = async () => {
-        try {
-
-
-
-        } catch (error) {
-
-        }
+    const handleLikeComment = async (cmt) => {
+        console.log(cmt);
+        // if (cmt) {
+        //     setHeartCommnet(cmt.hearts + 1, 'hahaha')
+        // }
     }
 
 
@@ -150,14 +146,14 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
         <>
 
             <div className={cx('recommend-list-item-container')}>
-                <Link to='@hahaha' className={cx('image-acount')}>
+                <Link to={currentUser && currentUser.uid === account.id ? '/profile' : `/account/${account.id}`} className={cx('image-acount')}>
                     <img src={account.image} />
                 </Link>
                 <div className={cx('video-recomend-box')}>
                     <div className={cx('video-recomend-infor-acount', 'd-flex-aitems-center')}>
                         <div className={cx('infor-box')}>
 
-                            <Link id={account.id} className={cx('d-flex-aitems-center')}>
+                            <Link to={currentUser && currentUser.uid === account.id ? '/profile' : `/account/${account.id}`} className={cx('d-flex-aitems-center')}>
                                 <p className={cx('account_nick_name')}>
                                     {account.nick_name} {tick && <FontAwesomeIcon className={cx('icon-check')} icon={faCheckCircle} />}
                                 </p>
@@ -246,13 +242,27 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                                             </p>
                                             <div className={cx('content-user-comment')}>
                                                 {comment.content_comment}
+
+
+                                                {/* {comment.hearts && comment.hearts != 0 && (
+                                                    <span className={cx('tym-of-comm')}>
+                                                        <img src={images.tymFb} />
+                                                        <span>{comment.hearts}</span>
+                                                    </span>
+                                                )} */}
+
+
+
+
                                             </div>
                                             <div className={cx('action-comment')}>
                                                 {
                                                     currentUser.uid === comment.account && (<button onClick={() => { handleDeleteComment(comment) }}>Xóa</button>)
                                                 }
 
-                                                <button onClick={handleLikeComment}>Thích</button>
+                                                <button onClick={() => { handleLikeComment(comment) }}>Thích</button>
+                                                <button >Phản hồi</button>
+
                                             </div>
                                         </div>
 

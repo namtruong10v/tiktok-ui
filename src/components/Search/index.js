@@ -25,24 +25,24 @@ function Search() {
 
     const inputRef = useRef();
 
-    // useEffect(() => {
-    //     // if (!debounced.trim()) {
-    //     //     setResultSearch([])
-    //     //     return;
-    //     // }
+    useEffect(() => {
+        if (!debounced.trim()) {
+            setResultSearch([])
+            return;
+        }
 
-    //     // const fetchApi = async () => {
-    //     //     setLoadding(true)
+        const fetchApi = async () => {
+            setLoadding(true)
 
-    //     //     const result = await searchSeivces.search(debounced)
-    //     //     setResultSearch(result);
+            const result = await searchSeivces.search(debounced)
+            setResultSearch(result);
 
-    //     //     setLoadding(false)
-    //     // }
+            setLoadding(false)
+        }
 
-    //     // fetchApi()
+        fetchApi()
 
-    // }, [debounced])
+    }, [debounced])
 
     const handleClear = () => {
         setSearchValue('');
@@ -89,7 +89,7 @@ function Search() {
                     <input
                         ref={inputRef}
                         value={searchValue}
-                        placeholder='Search accout and videos '
+                        placeholder='Search account and videos '
                         onChange={handleValue}
                         onFocus={() => {
                             setShowResult(true)
