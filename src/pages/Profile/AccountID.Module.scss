@@ -1,8 +1,85 @@
 .wraaper-account {
+    margin-top: 30px;
+
     .Video_video-recomend-infor-acount__HbC3l.Video_d-flex-aitems-center__-1gou {
         display: none;
     }
     .Video_image-acount__s1-q8 {
         display: none !important;
+    }
+
+    .Video_video-recomend-box__1arZ1 .Video_video-box__9Qukk .Video_video-play__xBfh4 {
+        width: 250px;
+        height: 350px;
+        object-fit: cover;
+    }
+    .Video_video-recomend-box__1arZ1 .Video_video-box__9Qukk .Video_action-of-video__HGZ9N {
+        position: absolute;
+        right: 30px;
+        color: white;
+    }
+    .Video_video-recomend-box__1arZ1 .Video_video-box__9Qukk .Video_action-of-video__HGZ9N button {
+        background-color: white;
+        width: 30px;
+        height: 30px;
+    }
+
+    .profile_user {
+        .infor_user {
+            display: flex;
+            .avatar_user {
+                width: 100px;
+                height: 100px;
+                margin-right: 20px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+            .name_infor {
+                .name_infor_name_acount {
+                    font-weight: 700;
+                    font-size: 32px;
+                    line-height: 38px;
+                    margin-bottom: 4px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-align: left;
+                    word-break: break-word;
+                    .icon-check {
+                        font-size: 24px;
+                        color: rgb(32, 213, 236);
+                    }
+                }
+                .name_infor_nickname {
+                    font-size: 18px;
+                    line-height: 25px;
+                    text-overflow: ellipsis;
+                    height: 25px;
+                    overflow: hidden;
+                    max-width: 450px;
+                    white-space: nowrap;
+                    display: flex;
+                    align-items: flex-end;
+                }
+                .large {
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                }
+            }
+        }
+    }
+    .title {
+        padding: 30px 0px;
+        font-size: 24px;
+        font-weight: 700;
+        border-bottom: 1px solid;
+    }
+    .video-flex-box {
+        display: flex;
+        width: 100%;
     }
 }
