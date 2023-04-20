@@ -81,5 +81,11 @@
     .video-flex-box {
         display: flex;
         width: 100%;
+        flex-wrap: wrap;
+        .Video_recommend-list-item-container__b7kYT {
+            width: 33.33333333333%;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
     }
 }

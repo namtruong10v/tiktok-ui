@@ -32,7 +32,6 @@ function Profile() {
         fechVideo();
     }, [id])
 
-    console.log(user, 'user')
     return (
 
         <div className={cx('wraaper-account')}>
