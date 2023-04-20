@@ -225,7 +225,10 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                             </div>
                         </div>
                         <div className={cx('user-comment')}>
-                            <img src={currentUser.photoURL != null ? currentUser.photoURL : images.noImage} />
+                            <Link to={'/profile'}>
+                                <img src={currentUser.photoURL != null ? currentUser.photoURL : images.noImage} />
+                            </Link>
+
                             <input onKeyDown={handleEnterKey} value={comment} ref={inputRef} onChange={(e) => { setComment(e.target.value) }} placeholder='Viết bình luận' />
                             <button onClick={handleSentComment}>Gửi</button>
                         </div>
@@ -235,9 +238,16 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
 
                                 addComment.slice(0).reverse().map((comment, index) => (
                                     <div key={index} className={cx('list-comment')}>
-                                        <img src={comment.src_account != null ? comment.src_account : images.noImage} />
+                                        <Link to={currentUser && currentUser.uid === comment.account ? '/profile' : `/account/${comment.account}`}>
+
+                                            <img src={comment.src_account != null ? comment.src_account : images.noImage} />
+                                        </Link>
                                         <div className={cx('name-content')}>
-                                            <p>{comment.name_acount}
+
+                                            <p>
+                                                <Link to={currentUser && currentUser.uid === comment.account ? '/profile' : `/account/${comment.account}`}>
+                                                    {comment.name_acount}
+                                                </Link>
                                                 <span>{comment.create_time}</span>
                                             </p>
                                             <div className={cx('content-user-comment')}>
