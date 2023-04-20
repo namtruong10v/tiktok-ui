@@ -18,9 +18,6 @@ function Profile() {
 
 
     let { id } = useParams();
-
-
-    console.log(auth, 'auth')
     const [videos, setVideos] = useState([]);
     const [user, setUser] = useState()
 
@@ -33,14 +30,14 @@ function Profile() {
             setUser(data.docs.find((doc) => doc.data().account.id === id))
         }
         fechVideo();
-    }, [])
+    }, [id])
 
-
+    console.log(user, 'user')
     return (
 
         <div className={cx('wraaper-account')}>
             <div className={cx('profile_user')}>
-                {user &&
+                {user ?
                     <div className={cx('infor_user')}>
                         <div className={cx('avatar_user')}>
                             <Image src={user.data().account.image} />
@@ -54,7 +51,11 @@ function Profile() {
                             </Button>
                         </div>
 
-                    </div>}
+                    </div>
+                    :
+                    <h2>Người dùng chưa có video nào</h2>
+
+                }
             </div>
 
 
