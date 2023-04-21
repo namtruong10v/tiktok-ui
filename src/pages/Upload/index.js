@@ -112,7 +112,7 @@ function Upload() {
                                             {loading && (<div className={cx('lds-ring')}><div></div><div></div><div></div><div></div></div>)}
                                             <div className={cx('change-flies-box')}>
                                                 <video className={cx('video-preview')} playsInline muted controls src={video} > </video>
-                                                <input onChange={handleChangeVideo} type='file' />
+                                                <input onChange={handleChangeVideo} type='file' accept="video/*" />
                                                 <input className={cx('description_video')} value={description} onChange={(e) => { setDescription(e.target.value) }} type='text' placeholder="Mô tả Video" />
                                                 <Select
                                                     mode="tags"

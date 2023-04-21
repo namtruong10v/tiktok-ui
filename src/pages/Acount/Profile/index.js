@@ -201,7 +201,7 @@ function Profile() {
                                                 {
                                                     showInnerPhoto && (<img className={cx('img-avatar_change2')} src={innerPhoto.preview} />)
                                                 }
-                                                <input type='file' className={cx('input-avatar_change')} onChange={handleChange} />
+                                                <input type='file' className={cx('input-avatar_change')} onChange={handleChange} accept="image/*" />
                                             </div>
                                             <Input data={currentUser.email} disabled={true} label='Tiktok ID' type='text' />
                                             <Input data={nameUser} label='Họ và Tên' type='text' placeholder='Họ và tên...' setData={setNameUser} />
@@ -252,7 +252,7 @@ function Profile() {
                                         {loading && (<div className={cx('lds-ring')}><div></div><div></div><div></div><div></div></div>)}
                                         <div className={cx('change-flies-box')}>
                                             <video className={cx('video-preview')} playsInline muted controls src={videoEdited} > </video>
-                                            <input onChange={handleChangeVideo} type='file' />
+                                            <input onChange={handleChangeVideo} type='file' accept="video/*" />
                                             <input className={cx('description_video')} value={titleVideoEdit} onChange={(e) => { setTitleVideoEdit(e.target.value) }} type='text' placeholder="Mô tả Video" />
                                             <Select
                                                 mode="tags"
