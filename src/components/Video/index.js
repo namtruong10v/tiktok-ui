@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { faCheckCircle, faClose, faMusic } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { Modal } from 'antd';
 
 import styles from './Video.module.scss';
 import classNames from 'classnames/bind';
@@ -25,7 +25,8 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
     const firestore = getFirestore();
     const frankDocRef = doc(firestore, "postVideo", `${id}`);
 
-
+    const [openModalDelect, setOpenModalDelect] = useState(false);
+    const [dataCommentDelect, setDataCommentDelect] = useState('')
 
     const [heart, setHeart] = useState(hearts);
     const [active, setActive] = useState(false);
@@ -114,8 +115,14 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
     }
 
 
+    // xóa comment
 
 
+    const getDataDelectComment = (cmt) => {
+        setOpenModalDelect(true)
+        setDataCommentDelect(cmt)
+
+    }
     const handleDeleteComment = async (cmt) => {
         try {
             await updateDoc(frankDocRef, {
@@ -125,11 +132,16 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
             const newComment = [...addComment];
             const index = newComment.indexOf(cmt);
             newComment.splice(index, 1);
-            setAddComment(newComment)
+            setAddComment(newComment);
+            setOpenModalDelect(false)
 
         } catch (error) {
 
         }
+    }
+
+    const handleCancelDelect = () => {
+        setOpenModalDelect(false)
     }
 
 
@@ -267,7 +279,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                                             </div>
                                             <div className={cx('action-comment')}>
                                                 {
-                                                    currentUser.uid === comment.account && (<button onClick={() => { handleDeleteComment(comment) }}>Xóa</button>)
+                                                    currentUser.uid === comment.account && (<button onClick={() => { getDataDelectComment(comment) }}>Xóa</button>)
                                                 }
 
                                                 <button onClick={() => { handleLikeComment(comment) }}>Thích</button>
@@ -288,6 +300,9 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                     </div>
                 </div>
             }
+            <Modal title="Xóa video ?" open={openModalDelect} onOk={() => { handleDeleteComment(dataCommentDelect) }} onCancel={handleCancelDelect}>
+                <p>Bạn có muốn xóa video này không ?</p>
+            </Modal>
         </>
 
     );

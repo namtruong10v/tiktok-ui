@@ -26,8 +26,9 @@ function Profile() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalOpenEdit, setIsModalOpenEdit] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
+    const [isModalOpenDelect, setIsModalOpenDelect] = useState(false)
 
+    const [isLogin, setIsLogin] = useState(false);
     const [photo, setPhoto] = useState(isLogin && currentUser.photoURL != null ? currentUser.photoURL : images.noImage);
     const [innerPhoto, setInnerPhoto] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -106,11 +107,23 @@ function Profile() {
     //---------------------------------------------------//
 
     // remove handel
+
+
+    const getDataIdVideoDelect = (id) => {
+        setFiledId(id);
+        console.log(id, 'iddddddd')
+        setIsModalOpenDelect(true)
+
+    }
     const deleteVideo = async (id) => {
         await deleteDoc(doc(firestore, "postVideo", `${id}`));
         fechVideo();
-        openNotificationSuccess('topRight', "Thành công !", "Video của bạn đã được xóa")
+        openNotificationSuccess('topRight', "Thành công !", "Video của bạn đã được xóa");
+        setIsModalOpenDelect(false)
 
+    }
+    const handleCancelDelect = () => {
+        setIsModalOpenDelect(false)
     }
 
 
@@ -169,7 +182,6 @@ function Profile() {
     };
 
 
-    console.log(filedId, 'filedId')
 
 
 
@@ -232,8 +244,11 @@ function Profile() {
                                             content='Xóa video'
                                             placement='left'
                                         >
-                                            <button key={index} onClick={() => { deleteVideo(video.id) }} className={cx('deleteVideo_user')}><FontAwesomeIcon icon={faTrash} /></button>
+                                            <button key={index} onClick={() => { getDataIdVideoDelect(video.id) }} className={cx('deleteVideo_user')}><FontAwesomeIcon icon={faTrash} /></button>
+
                                         </Tippy>
+
+
 
                                         <Tippy
                                             delay={[0, 300]}
@@ -243,7 +258,11 @@ function Profile() {
                                             <button onClick={() => { editVideo(video.id, video.data()) }} key={index} className={cx('editVideo_user')}><FontAwesomeIcon icon={faPencilSquare} /></button>
                                         </Tippy>
                                     </div>
+
+
                                 ))
+
+
                             }
 
                             <Modal title="Edit Video" open={isModalOpenEdit} onOk={() => { handelSubmitEdit(filedId) }} onCancel={handelCanelEdit}>
@@ -271,6 +290,11 @@ function Profile() {
                                 </div>
 
                             </Modal>
+
+                            <Modal title="Xóa video ?" open={isModalOpenDelect} onOk={() => { deleteVideo(filedId) }} onCancel={handleCancelDelect}>
+                                <p>Bạn có muốn xóa video này không ?</p>
+                            </Modal>
+
                         </div>
                     </>
 
