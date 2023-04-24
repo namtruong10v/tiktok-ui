@@ -300,8 +300,8 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                     </div>
                 </div>
             }
-            <Modal title="Xóa video ?" open={openModalDelect} onOk={() => { handleDeleteComment(dataCommentDelect) }} onCancel={handleCancelDelect}>
-                <p>Bạn có muốn xóa video này không ?</p>
+            <Modal title="Xóa comment ?" open={openModalDelect} onOk={() => { handleDeleteComment(dataCommentDelect) }} onCancel={handleCancelDelect}>
+                <p>Bạn có muốn xóa comment này không ?</p>
             </Modal>
         </>
 
