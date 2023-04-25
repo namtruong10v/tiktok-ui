@@ -9,6 +9,7 @@ import styles from './AccountID.Module.scss'
 import Button from '~/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { openNotificationSuccess } from '~/components/Notification';
 
 const cx = classNames.bind(styles)
 
@@ -31,6 +32,11 @@ function Profile() {
         fechVideo();
     }, [id])
 
+    // handle follow 
+    const handleFollow = () => {
+        openNotificationSuccess('topRight', 'Thành công !', 'Follow người dùng này thành công !')
+    }
+
     return (
 
         <div className={cx('wraaper-account')}>
@@ -44,7 +50,7 @@ function Profile() {
                         <div className={cx('name_infor')}>
                             <p className={cx('name_infor_name_acount')} >{user.data().account.name_acount} {user.data().tick && <FontAwesomeIcon className={cx('icon-check')} icon={faCheckCircle} />}</p>
                             <p className={cx('name_infor_nickname')} >{user.data().account.nick_name}</p>
-                            <Button primary className={cx('primary', 'large')}  >
+                            <Button onClick={handleFollow} primary className={cx('primary', 'large')}  >
                                 Follow
                             </Button>
                         </div>

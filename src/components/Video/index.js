@@ -8,6 +8,7 @@ import styles from './Video.module.scss';
 import classNames from 'classnames/bind';
 import Button from '../Button';
 import images from '~/assets/images';
+import { openNotificationSuccess } from '~/components/Notification'
 
 import { doc, updateDoc, arrayUnion, arrayRemove, onSnapshot } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
@@ -153,6 +154,11 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
     }
 
 
+    // handle follow
+    const handeFollow = () => {
+        openNotificationSuccess('topRight', 'Thành công', 'Follow người dùng này thành công !');
+    }
+
 
     return (
         <>
@@ -191,7 +197,7 @@ function Video({ id, title, account, music, hastag, src_video, tick, hearts, com
                                 </Link>
                             </div>
                         </div>
-                        <Button outline size='small'>follow</Button>
+                        <Button onClick={handeFollow} outline size='small'>follow</Button>
                     </div>
 
                     <div className={cx('video-box')} style={{ marginTop: 15 }}>
