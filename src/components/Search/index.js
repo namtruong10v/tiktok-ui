@@ -9,13 +9,15 @@ import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Poper';
 import AccountItem from '~/components/AccountItem';
 import { useDebounce } from '~/components/hooks';
+import { collection, query, where, getDocs, getFirestore } from "firebase/firestore";
 
-import * as searchSeivces from '~/services/searchSevice'
+
 
 const cx = classNames.bind(styles)
 
 
 function Search() {
+    const db = getFirestore()
     const [searchValue, setSearchValue] = useState('')
     const [resultSearch, setResultSearch] = useState([])
     const [showResult, setShowResult] = useState(true)
@@ -33,9 +35,14 @@ function Search() {
 
         const fetchApi = async () => {
             setLoadding(true)
+            console.log(debounced, 'debounced')
+            const q = query(collection(db, "Users"))
+            const data = await getDocs(q);
 
-            const result = await searchSeivces.search(debounced)
-            setResultSearch(result);
+            setResultSearch(data.docs.map((doc) => doc))
+
+
+
 
             setLoadding(false)
         }
@@ -74,9 +81,15 @@ function Search() {
                     <div className={cx('search-result')} tabIndex='-1' {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accout</h4>
-                            {resultSearch.map((result) => {
+                            {resultSearch.map((result, index) => {
+                                if (result.data().user.displayName.includes(debounced)) {
+                                    return <AccountItem key={index} data={result.data()} />
+                                } else {
 
-                                return <AccountItem key={result.id} data={result} />
+                                    return false;
+
+                                }
+
                             })}
                         </PopperWrapper>
 

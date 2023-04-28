@@ -19,7 +19,7 @@ function Profile() {
 
     let { id } = useParams();
     const [videos, setVideos] = useState([]);
-    const [user, setUser] = useState()
+    const [user, setUser] = useState([])
 
     useEffect(() => {
         const firestore = getFirestore();
@@ -27,10 +27,20 @@ function Profile() {
             const q = collection(firestore, "postVideo");
             const data = await getDocs(q);
             setVideos(data.docs.filter((doc) => doc.data().account.id === id));
-            setUser(data.docs.find((doc) => doc.data().account.id === id))
+
         }
+        const fechUser = async () => {
+            const q = collection(firestore, "Users");
+            const data = await getDocs(q);
+            setUser(data.docs.filter((doc) => doc.data().user.uid === id));
+        }
+        fechUser();
         fechVideo();
     }, [id])
+
+    console.log(user)
+
+
 
     // handle follow 
     const handleFollow = () => {
@@ -41,25 +51,28 @@ function Profile() {
 
         <div className={cx('wraaper-account')}>
             <div className={cx('profile_user')}>
-                {user ?
-                    <div className={cx('infor_user')}>
+                {user?.map((item, index) => (
+                    <div key={index} className={cx('infor_user')}>
                         <div className={cx('avatar_user')}>
-                            <Image src={user.data().account.image} />
+                            <Image src={item.data().user.photoURL} />
                         </div>
 
                         <div className={cx('name_infor')}>
-                            <p className={cx('name_infor_name_acount')} >{user.data().account.name_acount} {user.data().tick && <FontAwesomeIcon className={cx('icon-check')} icon={faCheckCircle} />}</p>
-                            <p className={cx('name_infor_nickname')} >{user.data().account.nick_name}</p>
+                            <p className={cx('name_infor_name_acount')} >{item.data().user.displayName} <FontAwesomeIcon className={cx('icon-check')} icon={faCheckCircle} /></p>
+                            <p className={cx('name_infor_nickname')} >{item.data().user.email}</p>
                             <Button onClick={handleFollow} primary className={cx('primary', 'large')}  >
                                 Follow
                             </Button>
                         </div>
 
                     </div>
-                    :
-                    <h2>Người dùng chưa có video nào</h2>
+                ))
+
+
 
                 }
+
+
             </div>
 
 

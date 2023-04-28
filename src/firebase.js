@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, doc, addDoc, setDoc } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
@@ -18,6 +18,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 export const auth = getAuth(app);
 export const storage = getStorage();
 export const firestore = getFirestore();
@@ -68,7 +69,8 @@ export async function uploadVideo(file, setLoading) {
   return urlVideo;
 }
 
-const postVideos = collection(firestore, "postVideo")
+const postVideos = collection(firestore, "postVideo");
+
 
 // upload Video 
 
@@ -84,6 +86,25 @@ export async function writeUpdateVideo(fileUpdate) {
   }
 
 }
+
+
+// add user new to db
+const userList = collection(firestore, "Users");
+
+export async function addUsertoDB(user) {
+  const docUser = user;
+  try {
+    await setDoc(doc(db, "Users", `${user.uid}`), {
+      user
+    });
+    console.log('add người dùng thành công')
+
+  }
+  catch (error) {
+    console.log('co loi', error)
+  }
+}
+
 
 export default app;
 

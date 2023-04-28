@@ -10,6 +10,7 @@ import images from '~/assets/images';
 import config from '~/config';
 import app from '~/firebase';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail, FacebookAuthProvider } from "firebase/auth";
+import { addUsertoDB } from '~/firebase';
 import { Input2 } from '~/components/Input';
 
 const auth = getAuth(app);
@@ -28,7 +29,7 @@ function Login() {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log(user, 'user')
+        console.log(user, 'user');
 
         openNotificationSuccess('topRight', 'Đăng nhập thành công', 'Chào mừng bạn quay trở lại !');
         navigate('/')
@@ -70,6 +71,15 @@ function Login() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+
+        const dataUser = {
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          uid: user.uid
+        }
+        addUsertoDB(dataUser)
+
         openNotificationSuccess('topRight', 'Đăng nhập thành công', 'Chúc mừng bạn đã đăng nhập thành công bằng tài khoản Google !');
 
         navigate('/')

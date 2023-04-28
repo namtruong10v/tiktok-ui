@@ -11,7 +11,7 @@ import images from '~/assets/images';
 import Input from '~/components/Input';
 import { useAuth, upload, firestore } from '~/firebase';
 import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
-import { uploadVideo } from "~/firebase";
+import { uploadVideo, addUsertoDB } from "~/firebase";
 import { faPencilSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { openNotificationSuccess } from '~/components/Notification';
 
@@ -97,6 +97,15 @@ function Profile() {
     const handleSubmit = async (e) => {
         try {
             upload(photo, currentUser, setLoading, nameUser);
+
+            const dataUser = {
+                displayName: nameUser,
+                email: currentUser.email,
+                photoURL: photo,
+                uid: currentUser.uid
+            }
+
+            addUsertoDB(dataUser)
 
         } catch (error) {
             console.log(error)
