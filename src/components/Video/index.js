@@ -165,7 +165,7 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
 
             <div className={cx('recommend-list-item-container')}>
                 <Link to={currentUser && currentUser.uid === account.id ? '/profile' : `/account/${account.id}`} className={cx('image-acount')}>
-                    <img src={account.image} />
+                    <img src={account.image != null || account.image != undefined ? account.image : images.noAvatar} />
                 </Link>
                 <div className={cx('video-recomend-box')}>
                     <div className={cx('video-recomend-infor-acount', 'd-flex-aitems-center')}>

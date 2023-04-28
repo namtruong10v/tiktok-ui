@@ -11,7 +11,7 @@ import images from '~/assets/images';
 import config from '~/config'
 import app from '~/firebase';
 import { addUsertoDB } from '~/firebase';
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail, FacebookAuthProvider } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail, FacebookAuthProvider, updateProfile } from "firebase/auth";
 import { Input2 } from '~/components/Input';
 
 const auth = getAuth(app);
@@ -32,15 +32,19 @@ function Register() {
         // Signed in 
         openNotificationSuccess('topRight', 'Đăng ký thành công', 'Chúc mừng bạn đã đăng ký thành công !')
         const user = userCredential.user;
-        const dataUser = {
-          displayName: '',
-          email: user.email,
-          photoURL: '',
-          uid: user.uid
-        }
-        addUsertoDB(dataUser)
-        navigate('/')
-        console.log(user, 'user')
+
+        // Update photoURL and displayName for use Registered
+        updateProfile(user, {
+          displayName: `user-${user.uid}`,
+          photoURL: 'https://statics.pancake.vn/web-media/72/ca/04/e2/ad95f064b86d4fdc639e9ff81fe9190b324cdee233d76a89854ede23.png',
+        })
+
+
+
+        setTimeout(() => {
+          window.location.href = '/'
+        }, 2000);
+
         // ...
       })
       .catch((error) => {

@@ -30,6 +30,13 @@ function Login() {
         // Signed in 
         const user = userCredential.user;
         console.log(user, 'user');
+        const dataUser = {
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          uid: user.uid
+        }
+        addUsertoDB(dataUser)
 
         openNotificationSuccess('topRight', 'Đăng nhập thành công', 'Chào mừng bạn quay trở lại !');
         navigate('/')

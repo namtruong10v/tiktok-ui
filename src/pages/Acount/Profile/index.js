@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import { Modal, Select } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 import images from '~/assets/images';
 import Input from '~/components/Input';
-import { useAuth, upload, firestore } from '~/firebase';
+import { useAuth, updateProfileUser, firestore } from '~/firebase';
 import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
-import { uploadVideo, addUsertoDB } from "~/firebase";
+import { uploadVideo } from "~/firebase";
 import { faPencilSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { openNotificationSuccess } from '~/components/Notification';
 
@@ -22,6 +22,8 @@ const cx = classNames.bind(styles);
 
 
 function Profile() {
+
+    const navigate = useNavigate()
     const currentUser = useAuth();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,10 +33,11 @@ function Profile() {
     const [isLogin, setIsLogin] = useState(false);
     const [photo, setPhoto] = useState(isLogin && currentUser.photoURL != null ? currentUser.photoURL : images.noImage);
     const [innerPhoto, setInnerPhoto] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [showInnerPhoto, setShowInnerPhoto] = useState(false);
     const [nameUser, setNameUser] = useState(isLogin && currentUser.displayName != null ? currentUser.displayName : '');
     const [videoUser, setVideoUser] = useState([]);
+
+    const [loading, setLoading] = useState(true);
 
     const [filedId, setFiledId] = useState('')
     const [videoEdited, setVideoEdited] = useState();
@@ -72,7 +75,7 @@ function Profile() {
     };
     const handleOk = async () => {
 
-        await handleSubmit();
+        await handleSubmitEditProfile();
 
         setIsModalOpen(false);
 
@@ -94,18 +97,11 @@ function Profile() {
         }
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmitEditProfile = async (e) => {
         try {
-            upload(photo, currentUser, setLoading, nameUser);
+            updateProfileUser(photo, currentUser, loading, nameUser);
+            openNotificationSuccess('topRight', "Thành công !", "Cập nhật hồ sơ thành công !");
 
-            const dataUser = {
-                displayName: nameUser,
-                email: currentUser.email,
-                photoURL: photo,
-                uid: currentUser.uid
-            }
-
-            addUsertoDB(dataUser)
 
         } catch (error) {
             console.log(error)
@@ -216,7 +212,7 @@ function Profile() {
                                 <Modal title="Sửa hồ sơ" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
 
                                     <div className={cx('wrapper_modal')}>
-                                        <form onSubmit={handleSubmit}>
+                                        <form onSubmit={handleSubmitEditProfile}>
                                             <div className={cx('change-flies-box')}>
                                                 <img className={cx('img-avatar_change')} src={photo} />
                                                 {

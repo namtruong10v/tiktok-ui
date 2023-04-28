@@ -76,7 +76,7 @@ function Header() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setIsLogin(true)
-                console.log(auth.currentUser.photoURL, 'auth.currentUser.photoURL');
+
             } else {
                 setIsLogin(false)
             }

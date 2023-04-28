@@ -39,11 +39,10 @@ export function useAuth() {
 
 
 // storage
-export async function upload(file, currentUser, setLoading, nameUser) {
+export async function updateProfileUser(file, currentUser, loading, nameUser) {
 
-  console.log(file, currentUser, setLoading, nameUser, 'thông tin upload')
   const fileRef = ref(storage, `images/${currentUser.uid}${file.name}`);
-  setLoading(true);
+
 
   const snapshot = await uploadBytes(fileRef, file);
   const photoURL = await getDownloadURL(fileRef);
@@ -53,10 +52,19 @@ export async function upload(file, currentUser, setLoading, nameUser) {
     displayName: nameUser,
   });
 
-  setLoading(false);
+  const dataUser = {
+    displayName: nameUser,
+    email: currentUser.email,
+    photoURL: photoURL,
+    uid: currentUser.uid
+  }
+  console.log(dataUser, 'dataUser')
 
 
-  window.location.href = '/profile'
+  addUsertoDB(dataUser)
+
+
+
 }
 
 export async function uploadVideo(file, setLoading) {
