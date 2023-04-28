@@ -31,7 +31,7 @@ function Profile() {
     const [isLogin, setIsLogin] = useState(false);
     const [photo, setPhoto] = useState(isLogin && currentUser.photoURL != null ? currentUser.photoURL : images.noImage);
     const [innerPhoto, setInnerPhoto] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [showInnerPhoto, setShowInnerPhoto] = useState(false);
     const [nameUser, setNameUser] = useState(isLogin && currentUser.displayName != null ? currentUser.displayName : '');
     const [videoUser, setVideoUser] = useState([]);

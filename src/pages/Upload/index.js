@@ -108,9 +108,10 @@ function Upload() {
                                 </button>
 
                                 <Modal title="Upload Video" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                                    {loading && (<div className={cx('lds-ring')}><div></div><div></div><div></div><div></div></div>)}
                                     <div className={cx('wrapper_modal')}>
                                         <form >
-                                            {loading && (<div className={cx('lds-ring')}><div></div><div></div><div></div><div></div></div>)}
+
                                             <div className={cx('change-flies-box')}>
                                                 <video className={cx('video-preview')} playsInline muted controls src={video} > </video>
                                                 <input onChange={handleChangeVideo} type='file' accept="video/*" />
