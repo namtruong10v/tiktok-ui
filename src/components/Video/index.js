@@ -18,7 +18,7 @@ const cx = classNames.bind(styles)
 
 
 
-function Video({ id, title, account, music, hastag, src_video, tick, hearts, comments = [] }) {
+function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts, comments = [] }) {
 
 
     const currentUser = useAuth();

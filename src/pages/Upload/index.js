@@ -21,7 +21,7 @@ function Upload() {
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [video, setVideo] = useState('');
-    const [tagsVideo, setTagsVideo] = useState({});
+    const [tagsVideo, setTagsVideo] = useState([]);
     const [description, setDescription] = useState('');
 
 
@@ -52,7 +52,8 @@ function Upload() {
             });
             setLoading(false);
             setIsModalOpen(false);
-            openNotificationSuccess("topRight", 'Thành công !', 'Video của bạn đã được tải lên !')
+            openNotificationSuccess("topRight", 'Thành công !', 'Video của bạn đã được tải lên !');
+            console.log('tagsVideo', tagsVideo)
 
         } catch (error) {
             openNotificationErorr("topRight", 'Thất bại !', 'Dường như có lỗi sảy ra')
@@ -122,6 +123,7 @@ function Upload() {
                                                     placeholder="Tags Video"
                                                     onChange={handleChange}
                                                     options={options}
+                                                // defaultValue={['#XuHuong', '#Tiktok']}
                                                 />
                                             </div>
                                         </form>
