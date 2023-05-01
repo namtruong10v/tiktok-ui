@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ReactVisibilitySensor from 'react-visibility-sensor';
 import { faCheckCircle, faClose, faMusic } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal } from 'antd';
@@ -20,6 +21,8 @@ const cx = classNames.bind(styles)
 
 function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts, comments = [] }) {
 
+    const videoRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
 
     const currentUser = useAuth();
 
@@ -36,6 +39,10 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
     const [showModal, setShowModal] = useState(false);
     // const [heartCommnet, setHeartCommnet] = useState(0)
 
+
+
+
+    // handel heart
     const handleHeart = async () => {
         setActive(!active);
         if (!active) {
@@ -160,6 +167,21 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
     }
 
 
+
+    // handel autoplay video when scoll
+    useEffect(() => {
+        if (isVisible) {
+            videoRef.current.play();
+        } else {
+            if (videoRef.current.play) {
+                videoRef.current.pause();
+            }
+        }
+    }, [isVisible]);
+
+
+
+
     return (
         <>
 
@@ -201,7 +223,9 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
                     </div>
 
                     <div className={cx('video-box')} style={{ marginTop: 15 }}>
-                        <video id={id} title={title} className={cx('video-play')} preload='true' src={src_video} controls playsInline loop></video>
+                        <ReactVisibilitySensor onChange={(isVisible) => setIsVisible(isVisible)}>
+                            <video ref={videoRef} id={id} title={title} className={cx('video-play')} preload='true' src={src_video} controls playsInline loop></video>
+                        </ReactVisibilitySensor>
                         <div className={cx('action-of-video')}>
                             <button onClick={handleHeart} className={cx('btn-action-heart')}>
                                 {active ?
@@ -231,16 +255,14 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
 
             </div>
 
-            {showModal && currentUser &&
-                <div onClick={() => { setShowModal(false) }} className={cx('wrapper')}>
+            {currentUser &&
+                <Modal onOk={handleSentComment} onCancel={() => { setShowModal(false) }} open={showModal} className={cx('wrapper')}>
                     <div onClick={(e) => { e.stopPropagation() }} className={cx('modal-box')}>
                         <div className={cx('title_action')}>
                             <h2>Bình luận
                                 <span>{addComment.length}</span>
                             </h2>
-                            <div onClick={() => { setShowModal(false) }} className={cx('action-close')}>
-                                <FontAwesomeIcon icon={faClose} />
-                            </div>
+
                         </div>
                         <div className={cx('user-comment')}>
                             <Link to={'/profile'}>
@@ -304,7 +326,7 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
                         </div>
 
                     </div>
-                </div>
+                </Modal>
             }
             <Modal title="Xóa comment ?" open={openModalDelect} onOk={() => { handleDeleteComment(dataCommentDelect) }} onCancel={handleCancelDelect}>
                 <p>Bạn có muốn xóa comment này không ?</p>

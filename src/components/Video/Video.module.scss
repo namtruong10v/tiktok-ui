@@ -26,7 +26,7 @@
     .video-recomend-infor-acount {
         .infor-box {
             max-width: 510px;
-
+            margin-right: 40px;
             .account_nick_name {
                 font-weight: 700;
                 font-size: 18px;
@@ -63,7 +63,7 @@
         .video-play {
             max-width: 90%;
             width: 420px;
-            height: 525px;
+            height: 70vh;
             object-fit: contain;
             border-radius: 8px;
             background-color: black;
@@ -107,16 +107,9 @@
     align-items: center;
 }
 .wrapper {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999;
 
     .modal-box {
         padding: 20px 30px;

@@ -25,7 +25,7 @@ import config from '~/config';
 
 const MENU_ITEMS = [
     {
-        title: 'English',
+        title: 'Ngôn ngữ',
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         children: {
             title: 'Languages',
@@ -46,17 +46,6 @@ const MENU_ITEMS = [
             ]
         }
     },
-    {
-        title: 'Feedback and help',
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
-        to: '/feeback'
-    },
-    {
-        title: 'Keyboard shortcuts',
-        icon: <FontAwesomeIcon icon={faKeyboard} />
-
-    },
-
 ]
 
 
@@ -108,16 +97,6 @@ function Header() {
             title: 'View profile',
             icon: <FontAwesomeIcon icon={faUser} />,
             to: '/profile'
-        },
-        {
-            title: 'Get coins',
-            icon: <FontAwesomeIcon icon={faCoins} />,
-            to: '/coins'
-        },
-        {
-            title: 'Settings',
-            icon: <FontAwesomeIcon icon={faGear} />,
-            to: '/settings'
         },
         ...MENU_ITEMS,
         {
