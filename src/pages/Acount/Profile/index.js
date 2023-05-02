@@ -37,7 +37,7 @@ function Profile() {
     const [nameUser, setNameUser] = useState(isLogin && currentUser.displayName != null ? currentUser.displayName : '');
     const [videoUser, setVideoUser] = useState([]);
 
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const [filedId, setFiledId] = useState('')
     const [videoEdited, setVideoEdited] = useState();
