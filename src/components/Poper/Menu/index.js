@@ -40,7 +40,7 @@ function Menu({ items = [], children, hideOnClick = false, onChange = defaultOnc
                 if (isParent) {
                     setHistory(prev => [...prev, item.children])
                 } else {
-                    if (item.title == 'Log out') {
+                    if (item.code == 'Logout') {
                         signOut(auth)
                             .then(() => {
                                 openNotificationSuccess('topRight', 'Thành công', 'Đăng xuất thành công');

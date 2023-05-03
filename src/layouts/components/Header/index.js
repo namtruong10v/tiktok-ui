@@ -107,6 +107,7 @@ function Header() {
         {
             title: `${t('header.logout')}`,
             icon: <FontAwesomeIcon icon={faSignOut} />,
+            code: 'Logout',
 
             separate: true
         },

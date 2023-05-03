@@ -14,12 +14,14 @@ import { openNotificationSuccess } from '~/components/Notification'
 import { doc, updateDoc, arrayUnion, arrayRemove, onSnapshot } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { useAuth } from '~/firebase';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles)
 
 
 
 function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts, comments = [] }) {
+    const { t } = useTranslation('common')
 
     const videoRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -67,7 +69,7 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
             setShowModal(true);
 
         } else {
-            alert('Vui lòng đăng nhập !')
+            alert(`${t('page_home_video_component.please_login')}`)
         }
     }
 
@@ -163,7 +165,7 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
 
     // handle follow
     const handeFollow = () => {
-        openNotificationSuccess('topRight', 'Thành công', 'Follow người dùng này thành công !');
+        openNotificationSuccess('topRight', `${t('notification.succeed')}`, `${t('page_home_video_component.follow_succeed')}`);
     }
 
 
@@ -215,11 +217,11 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
                             <div>
                                 <Link to=''>
                                     <FontAwesomeIcon className={cx('icon-music')} icon={faMusic} />
-                                    <strong className={cx('video-recomend-tag')}>Nhạc Nền</strong>
+                                    <strong className={cx('video-recomend-tag')}>{t('page_home_video_component.music')}</strong>
                                 </Link>
                             </div>
                         </div>
-                        <Button onClick={handeFollow} outline size='small'>follow</Button>
+                        <Button onClick={handeFollow} outline size='small'>{t('page_home_video_component.follow')}</Button>
                     </div>
 
                     <div className={cx('video-box')} style={{ marginTop: 15 }}>
@@ -259,7 +261,7 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
                 <Modal onOk={handleSentComment} onCancel={() => { setShowModal(false) }} open={showModal} className={cx('wrapper')}>
                     <div onClick={(e) => { e.stopPropagation() }} className={cx('modal-box')}>
                         <div className={cx('title_action')}>
-                            <h2>Bình luận
+                            <h2>{t('page_home_video_component.comments')}
                                 <span>{addComment.length}</span>
                             </h2>
 
@@ -269,8 +271,8 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
                                 <img src={currentUser.photoURL != null ? currentUser.photoURL : images.noImage} />
                             </Link>
 
-                            <input onKeyDown={handleEnterKey} value={comment} ref={inputRef} onChange={(e) => { setComment(e.target.value) }} placeholder='Viết bình luận' />
-                            <button onClick={handleSentComment}>Gửi</button>
+                            <input onKeyDown={handleEnterKey} value={comment} ref={inputRef} onChange={(e) => { setComment(e.target.value) }} placeholder={t('page_home_video_component.addd_comment')} />
+                            <button onClick={handleSentComment}>{t('page_home_video_component.send')}</button>
                         </div>
 
                         <div className={cx('list-comments')}>
@@ -307,11 +309,11 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
                                             </div>
                                             <div className={cx('action-comment')}>
                                                 {
-                                                    currentUser.uid === comment.account && (<button onClick={() => { getDataDelectComment(comment) }}>Xóa</button>)
+                                                    currentUser.uid === comment.account && (<button onClick={() => { getDataDelectComment(comment) }}>{t('page_home_video_component.delete')}</button>)
                                                 }
 
-                                                <button onClick={() => { handleLikeComment(comment) }}>Thích</button>
-                                                <button >Phản hồi</button>
+                                                <button onClick={() => { handleLikeComment(comment) }}>{t('page_home_video_component.like')}</button>
+                                                <button >{t('page_home_video_component.reply')}</button>
 
                                             </div>
                                         </div>
@@ -328,8 +330,8 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
                     </div>
                 </Modal>
             }
-            <Modal title="Xóa comment ?" open={openModalDelect} onOk={() => { handleDeleteComment(dataCommentDelect) }} onCancel={handleCancelDelect}>
-                <p>Bạn có muốn xóa comment này không ?</p>
+            <Modal title={t('page_home_video_component.delete_comment')} open={openModalDelect} onOk={() => { handleDeleteComment(dataCommentDelect) }} onCancel={handleCancelDelect}>
+                <p>{t('page_home_video_component.do_you_delete_comment')}</p>
             </Modal>
         </>
 

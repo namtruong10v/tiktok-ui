@@ -7,6 +7,7 @@ import images from "~/assets/images";
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { openNotificationSuccess, openNotificationErorr } from '~/components/Notification'
 import { uploadVideo } from "~/firebase";
+import { useTranslation } from "react-i18next";
 
 const firestore = getFirestore();
 const postVideos = collection(firestore, "postVideo")
@@ -17,6 +18,8 @@ const postVideos = collection(firestore, "postVideo")
 const cx = classNames.bind(styles)
 
 function Upload() {
+    const { t } = useTranslation('common')
+
     const currentUser = useAuth();
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,11 +55,11 @@ function Upload() {
             });
             setLoading(false);
             setIsModalOpen(false);
-            openNotificationSuccess("topRight", 'Thành công !', 'Video của bạn đã được tải lên !');
+            openNotificationSuccess("topRight", `${t('notification.succeed')}`, `${t('notification.video_uploaded')}`);
             console.log('tagsVideo', tagsVideo)
 
         } catch (error) {
-            openNotificationErorr("topRight", 'Thất bại !', 'Dường như có lỗi sảy ra')
+            openNotificationErorr("topRight", `${t('notification.failed')}`, `${t('notification.something_went_wrong')}`)
             console.log(error, 'có lõi')
         }
 
@@ -91,19 +94,19 @@ function Upload() {
                         <input type="file" accept="video/*" className={cx("jsx-4258277349")} style={{ display: 'none' }} />
                         <div className={cx("jsx-4258277349", "upload-card", "before-upload-stage")}>
                             <img src="//lf16-tiktok-common.ibytedtos.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/cloud-icon1.ecf0bf2b.svg" className={cx("jsx-4258277349 cloud-icon")} />
-                            <div className={cx("jsx-4258277349", "text-main")}><span className={cx("css-1q42136")}>Chọn video để tải lên</span></div>
-                            <div className={cx("jsx-4258277349 ")}><span className={cx("css-1wbo2p7")}>Hoặc kéo và thả tập tin</span></div>
-                            <div className={cx("jsx-4258277349", "text-sub")}><span className={cx("css-1wbo2p7")}>Có thể tách video dài thành nhiều phần để tăng khả năng hiển thị</span></div>
+                            <div className={cx("jsx-4258277349", "text-main")}><span className={cx("css-1q42136")}>{t('page_upload_video.select_video_to_upload')}</span></div>
+                            <div className={cx("jsx-4258277349 ")}><span className={cx("css-1wbo2p7")}> {t('page_upload_video.or_drag_and_drop_files')}</span></div>
+                            <div className={cx("jsx-4258277349", "text-sub")}><span className={cx("css-1wbo2p7")}> {t('page_upload_video.long_video_upload')}</span></div>
                             <div className={cx("jsx-4258277349", "text-video-info")}>
-                                <div className={cx("jsx-4258277349")}><span className={cx("css-tad11f")}>MP4 hoặc WebM</span></div>
-                                <div className={cx("jsx-4258277349")}><span className={cx("css-tad11f")}>Độ phân giải 720x1280 trở lên</span></div>
-                                <div className={cx("jsx-4258277349")}><span className={cx("css-tad11f")}>Tối đa 30 phút</span></div>
-                                <div className={cx("jsx-4258277349")}><span className={cx("css-tad11f")}>Nhỏ hơn 2 GB</span></div>
+                                <div className={cx("jsx-4258277349")}><span className={cx("css-tad11f")}>{t('page_upload_video.mp4_or_webM')}</span></div>
+                                <div className={cx("jsx-4258277349")}><span className={cx("css-tad11f")}>{t('page_upload_video.resolution_720')}</span></div>
+                                <div className={cx("jsx-4258277349")}><span className={cx("css-tad11f")}>{t('page_upload_video.max_30_minutes')}</span></div>
+                                <div className={cx("jsx-4258277349")}><span className={cx("css-tad11f")}>{t('page_upload_video.less_than_2GB')}</span></div>
                             </div>
                             <div className={cx("jsx-4258277349 file-select-button wide-file-select-button")}>
                                 <button onClick={showModal} className={cx("css-byn4hh")}>
                                     <div className={cx("css-1db5cpb")}>
-                                        <div className={cx("css-1z070dx")}>Chọn tập tin</div>
+                                        <div className={cx("css-1z070dx")}>{t('page_upload_video.select_file')}</div>
                                     </div>
                                 </button>
 
@@ -115,7 +118,7 @@ function Upload() {
                                             <div className={cx('change-flies-box')}>
                                                 <video className={cx('video-preview')} playsInline muted controls src={video} > </video>
                                                 <input onChange={handleChangeVideo} type='file' accept="video/*" />
-                                                <input className={cx('description_video')} value={description} onChange={(e) => { setDescription(e.target.value) }} type='text' placeholder="Mô tả Video" />
+                                                <input className={cx('description_video')} value={description} onChange={(e) => { setDescription(e.target.value) }} type='text' placeholder={t('page_upload_video.description_this_vd')} />
                                                 <Select
                                                     mode="tags"
                                                     style={{

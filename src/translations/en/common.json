@@ -8,6 +8,42 @@
         "language":"Language",
         "logout":"Log out",
         "login":"Log in"
-        
+    },
+    "sidebar":{
+        "for_you":"For you",
+        "followed":"Followed",
+        "live":"Live"
+    },
+    "notification":{
+        "succeed":"Successfully !",
+        "failed":"Failed !",
+        "something_went_wrong":"Looks like something went wrong !"
+    },
+    "page_home_video_component":{
+        "please_login":"Please login",
+        "music":"Music",
+        "follow":"Follow",
+        "comments":"Comments",
+        "addd_comment":"Addd comment",
+        "send":"Send",
+        "delete":"Delete",
+        "like":"Like",
+        "reply":"Reply",
+        "delete_comment":"Delete comment ?",
+        "do_you_delete_comment":"Do you want to delete this comment?",
+        "follow_succeed":"Follow this user successfully !"
+    },
+    "page_upload_video": {
+        "video_uploaded":"Your video has been uploaded !",
+        "select_video_to_upload":"Select video to upload",
+        "or_drag_and_drop_files":"Or drag and drop files",
+        "long_video_upload":"Long videos can be split into several parts to increase visibility",
+        "mp4_or_webM":"MP4 or WebM",
+        "resolution_720":"Resolution 720x1280 or higher",
+        "max_30_minutes" :"Max 30 minutes",
+        "less_than_2GB":"Less than 2 GB",
+        "select_file":"Select file",
+        "description_this_vd":"Description for this video"
+
     }
 }

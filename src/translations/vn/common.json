@@ -8,5 +8,41 @@
         "language":"Ngôn ngữ",
         "logout":"Đăng xuất",
         "login":"Đăng nhập"
+    },
+    "sidebar":{
+        "for_you":"Dành cho bạn",
+        "followed":"Đang theo dõi",
+        "live":"Trực tiếp"
+    },
+    "notification":{
+        "succeed":"Thành công !",
+        "failed":"Thất bại !",
+        "something_went_wrong":"Dường như đã có lỗi sảy ra !"
+    },
+    "page_home_video_component":{
+        "please_login":"Vui lòng đăng nhập",
+        "music":"Nhạc nền",
+        "follow":"Theo dõi",
+        "comments":"Bình luận",
+        "addd_comment":"Viết bình luận",
+        "send":"Gửi",
+        "delete":"Xóa",
+        "like":"Thích",
+        "reply":"Phản hồi",
+        "delete_comment":"Xóa comment",
+        "do_you_delete_comment":"Bạn có muốn xóa comment này không ?",
+        "follow_succeed":"Follow người dùng này thành công !"
+    },
+    "page_upload_video": {
+        "video_uploaded":"Video của bạn đã được tải lên !",
+        "select_video_to_upload" :"Chọn video để tải lên ",
+        "or_drag_and_drop_files":"Hoặc kéo và thả files vào đây",
+        "long_video_upload":"Có thể tách video dài thành nhiều phần để tăng khả năng hiển thị",
+        "mp4_or_webM":"MP4 hoặc WebM",
+        "resolution_720":"Độ phân giải 720x1280 trở lên",
+        "max_30_minutes" :"Tối đa 30 phút",
+        "less_than_2GB":"Nhỏ hơn 2 GB",
+        "select_file":"Chọn tập tin",
+        "description_this_vd":"Mô tả cho video này"
     }
 }
