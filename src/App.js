@@ -2,10 +2,10 @@ import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { publishRoutes } from '~/routes';
 import { DefaultLayout } from '~/layouts';
-
 import ScrollToTop from './components/ScrollToTop';
-function App() {
 
+
+function App() {
 
   return (
 

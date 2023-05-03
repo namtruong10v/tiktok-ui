@@ -2,14 +2,16 @@ import Tippy from "@tippyjs/react/headless";
 import classNames from "classnames/bind";
 import styles from './Menu.module.scss';
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 
 import { Wrapper as PopperWrapper } from "~/components/Poper";
 import MenuItem from "./MenuItem";
 import Header from "./Header";
 import app from '~/firebase';
 import { getAuth, signOut } from "firebase/auth";
-import { openNotificationSuccess } from '~/components/Notification'
+import { openNotificationSuccess } from '~/components/Notification';
+
+import { useTranslation } from "react-i18next";
+
 
 const auth = getAuth(app);
 
@@ -19,7 +21,8 @@ const cx = classNames.bind(styles)
 const defaultOnchange = () => { }
 
 function Menu({ items = [], children, hideOnClick = false, onChange = defaultOnchange }) {
-    const navigate = useNavigate();
+
+    const { t, i18n } = useTranslation('common');
 
     const [history, setHistory] = useState([{ data: items }])
 
@@ -48,7 +51,14 @@ function Menu({ items = [], children, hideOnClick = false, onChange = defaultOnc
                                 console.log(error, 'error')
                                 // An error happened.
                             });
+                    };
+                    if (item.code == 'vn') {
+                        i18n.changeLanguage('vn')
                     }
+                    if (item.code == 'en') {
+                        i18n.changeLanguage('en')
+                    }
+
                 }
             }} />
         })

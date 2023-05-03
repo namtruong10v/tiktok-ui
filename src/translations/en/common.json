@@ -1,0 +1,13 @@
+{
+    "header": {
+        "search": "Search account and videos",
+        "upload":"Upload",
+        "uploadVideo":"Upload video",
+        "message":"Message",
+        "viewProfile":"View profile",
+        "language":"Language",
+        "logout":"Log out",
+        "login":"Log in"
+        
+    }
+}

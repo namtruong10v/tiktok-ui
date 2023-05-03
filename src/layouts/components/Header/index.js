@@ -20,33 +20,8 @@ import Search from '~/components/Search';
 import config from '~/config';
 
 
+import { useTranslation } from "react-i18next";
 
-
-
-const MENU_ITEMS = [
-    {
-        title: 'Ngôn ngữ',
-        icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        children: {
-            title: 'Languages',
-            data: [
-                {
-                    code: 'en',
-                    title: 'English',
-                    type: 'language'
-                },
-
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                    type: 'language'
-                },
-
-
-            ]
-        }
-    },
-]
 
 
 const cx = classNames.bind(styles)
@@ -56,6 +31,9 @@ const auth = getAuth(app);
 
 
 function Header() {
+
+    const { t } = useTranslation('common');
+
 
     const navigate = useNavigate()
     const [isLogin, setIsLogin] = useState(false);
@@ -84,23 +62,50 @@ function Header() {
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
+
                 ///
                 break;
 
             default:
 
         }
+
     }
+
+    const MENU_ITEMS = [
+        {
+            title: `${t('header.language')}`,
+            icon: <FontAwesomeIcon icon={faEarthAsia} />,
+            children: {
+                title: `${t('header.language')}`,
+                data: [
+                    {
+                        code: 'en',
+                        title: 'English',
+                        type: 'language'
+                    },
+
+                    {
+                        code: 'vn',
+                        title: 'Tiếng Việt',
+                        type: 'language'
+                    },
+
+
+                ]
+            }
+        },
+    ]
 
     const userMenu = [
         {
-            title: 'View profile',
+            title: `${t('header.viewProfile')}`,
             icon: <FontAwesomeIcon icon={faUser} />,
             to: '/profile'
         },
         ...MENU_ITEMS,
         {
-            title: 'Log out',
+            title: `${t('header.logout')}`,
             icon: <FontAwesomeIcon icon={faSignOut} />,
 
             separate: true
@@ -135,7 +140,7 @@ function Header() {
                                 <Link to='/upload'>
                                     <button className={cx('action-btn', 'action-outline')}>
                                         <UploadIcon />
-                                        Upload
+                                        {t('header.upload')}
                                     </button>
                                 </Link>
                             </Tippy>
@@ -152,10 +157,10 @@ function Header() {
                         </>
                         :
                         <>
-                            <Button text to='/login'  >Upload</Button>
+                            <Button text to='/login'  > {t('header.upload')}</Button>
 
                             <button onClick={() => { navigate('/login') }} className={cx('primary', 'large')}  >
-                                Log in
+                                {t('header.login')}
                             </button>
 
 

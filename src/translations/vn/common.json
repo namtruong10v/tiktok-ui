@@ -1,0 +1,12 @@
+{
+    "header": {
+        "search": "Tìm kiếm tài khoản và videos",
+        "upload":"Tải lên",
+        "uploadVideo":"Tải video lên",
+        "message":"Tin nhắn",
+        "viewProfile":"Trang cá nhân",
+        "language":"Ngôn ngữ",
+        "logout":"Đăng xuất",
+        "login":"Đăng nhập"
+    }
+}

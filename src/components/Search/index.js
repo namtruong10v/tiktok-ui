@@ -11,12 +11,15 @@ import AccountItem from '~/components/AccountItem';
 import { useDebounce } from '~/components/hooks';
 import { collection, query, where, getDocs, getFirestore } from "firebase/firestore";
 
+import { useTranslation } from "react-i18next";
 
 
 const cx = classNames.bind(styles)
 
 
 function Search() {
+    const { t } = useTranslation('common');
+
     const db = getFirestore()
     const [searchValue, setSearchValue] = useState('')
     const [resultSearch, setResultSearch] = useState([])
@@ -102,7 +105,7 @@ function Search() {
                     <input
                         ref={inputRef}
                         value={searchValue}
-                        placeholder='Search account and videos '
+                        placeholder={t('header.search')}
                         onChange={handleValue}
                         onFocus={() => {
                             setShowResult(true)
