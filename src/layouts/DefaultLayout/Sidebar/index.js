@@ -1,5 +1,5 @@
-import classNames from 'classnames/bind';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import styles from './Sidebar.module.scss';
 
@@ -46,6 +46,7 @@ function Sidebar() {
                             </Link>
                         </div>
                     </li>
+
                 </ul>
             </nav>
         </aside>

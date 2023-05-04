@@ -73,7 +73,7 @@ function Menu({ items = [], children, hideOnClick = false, onChange = defaultOnc
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex='-1' {...attrs}>
                     <PopperWrapper className={cx('menu-poper')}>
-                        {history.length > 1 && <Header title='Languages' onBack={() => {
+                        {history.length > 1 && <Header title={t('header.choose_below')} onBack={() => {
                             setHistory(prev => prev.slice(0, prev.length - 1))
                         }} />}
                         <div className={cx('wrapper-menu-item')}>

@@ -38,7 +38,7 @@ function Home() {
                 style={{ height: '100vh' }}
             >
                 {
-                    videos.map((item, index) => (
+                    videos.slice(0).reverse().map((item, index) => (
                         <SwiperSlide key={index}>
                             <Video
                                 key={index}

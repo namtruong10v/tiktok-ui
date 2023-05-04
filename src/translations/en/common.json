@@ -7,7 +7,11 @@
         "viewProfile":"View profile",
         "language":"Language",
         "logout":"Log out",
-        "login":"Log in"
+        "login":"Log in",
+        "mode_theme":"Mode theme",
+        "choose_below":"Choose below",
+        "light":"Light",
+        "dark":"Dark"
     },
     "sidebar":{
         "for_you":"For you",

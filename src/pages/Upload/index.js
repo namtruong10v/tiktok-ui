@@ -55,7 +55,7 @@ function Upload() {
             });
             setLoading(false);
             setIsModalOpen(false);
-            openNotificationSuccess("topRight", `${t('notification.succeed')}`, `${t('notification.video_uploaded')}`);
+            openNotificationSuccess("topRight", `${t('notification.succeed')}`, `${t('page_upload_video.video_uploaded')}`);
             console.log('tagsVideo', tagsVideo)
 
         } catch (error) {

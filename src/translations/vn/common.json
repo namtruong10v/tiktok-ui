@@ -7,7 +7,11 @@
         "viewProfile":"Trang cá nhân",
         "language":"Ngôn ngữ",
         "logout":"Đăng xuất",
-        "login":"Đăng nhập"
+        "login":"Đăng nhập",
+        "mode_theme":"Giao diện mode",
+        "choose_below":"Chọn ở đây",
+        "light":"Sáng",
+        "dark":"Tối"
     },
     "sidebar":{
         "for_you":"Dành cho bạn",

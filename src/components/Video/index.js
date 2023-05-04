@@ -174,6 +174,7 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
     useEffect(() => {
         if (isVisible) {
             videoRef.current.play();
+            videoRef.current.currentTime = 0;
         } else {
             if (videoRef.current.play) {
                 videoRef.current.pause();
