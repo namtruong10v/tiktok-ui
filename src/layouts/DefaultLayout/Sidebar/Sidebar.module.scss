@@ -1,6 +1,6 @@
 .wrapper {
     width: 356px;
-
+    margin-right: 10px;
     .tiktok-1rvr9ul-NavMainNavContainer {
         position: sticky;
         top: 100px;
@@ -12,17 +12,26 @@
             padding: 0;
             margin: 0;
             list-style-type: none;
+            li {
+                padding: 2px 0px;
 
-            .tiktok-12zznuq-StyledLink-StyledTmpLink {
-                display: flex;
-                align-items: center;
-                justify-content: start;
-                margin: 20px 0px;
+                .tiktok-12zznuq-StyledLink-StyledTmpLink {
+                    margin: 10px 0px;
+                    align-items: center;
+                    justify-content: start;
+                    display: flex;
+                    &.active {
+                        color: rgba(254, 44, 85, 1);
+                    }
 
-                .tiktok-138u7nq-SpanMainNavText {
-                    margin-left: 16px;
-                    font-size: 20px;
-                    font-weight: bold;
+                    .tiktok-138u7nq-SpanMainNavText {
+                        margin-left: 16px;
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+                }
+                &:hover {
+                    background-color: rgba(22, 24, 35, 0.06);
                 }
             }
         }

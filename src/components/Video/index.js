@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ReactVisibilitySensor from 'react-visibility-sensor';
 import { faCheckCircle, faClose, faMusic } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +21,7 @@ const cx = classNames.bind(styles)
 
 
 function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts, comments = [] }) {
+
     const { t } = useTranslation('common')
 
     const videoRef = useRef(null);
@@ -172,14 +173,18 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
 
     // handel autoplay video when scoll
     useEffect(() => {
-        if (isVisible) {
-            videoRef.current.play();
-            videoRef.current.currentTime = 0;
-        } else {
-            if (videoRef.current.play) {
-                videoRef.current.pause();
+        let parthName = window.location.pathname;
+        if (parthName == '/' || parthName == "/following") {
+            if (isVisible) {
+                videoRef.current.play();
+                videoRef.current.currentTime = 0;
+            } else {
+                if (videoRef.current.play) {
+                    videoRef.current.pause();
+                }
             }
         }
+
     }, [isVisible]);
 
 
