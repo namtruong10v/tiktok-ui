@@ -18,7 +18,7 @@
         "followed":"Followed",
         "live":"Live",
         "trend":"trend",
-        "account":"User Account"
+        "account_recomment":"Recommended account"
     },
     "notification":{
         "succeed":"Successfully !",

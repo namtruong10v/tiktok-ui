@@ -66,7 +66,7 @@ function Sidebar() {
 
                 </ul>
                 <div className={cx('account_sidebar')}>
-                    <span className={cx("title_account_user")}>{t('sidebar.account')}</span>
+                    <span className={cx("title_account_user")}>{t('sidebar.account_recomment')}</span>
                     <div className={cx('account_user-box')}>
                         {users.map((result, index) => {
                             if (result.data()) {
