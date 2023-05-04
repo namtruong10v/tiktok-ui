@@ -1,17 +1,20 @@
-import { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { publishRoutes } from '~/routes';
 import { DefaultLayout } from '~/layouts';
 import ScrollToTop from './components/ScrollToTop';
 
 
+
 function App() {
+  const appcurrent = useRef();
+
 
   return (
 
     <Router>
       <ScrollToTop />
-      <div className="App">
+      <div id="App_dnt_reacjs" className="App">
         <Routes>
           {publishRoutes.map((route, index) => {
 
