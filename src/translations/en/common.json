@@ -16,7 +16,8 @@
     "sidebar":{
         "for_you":"For you",
         "followed":"Followed",
-        "live":"Live"
+        "live":"Live",
+        "trend":"trend"
     },
     "notification":{
         "succeed":"Successfully !",

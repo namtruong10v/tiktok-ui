@@ -16,7 +16,8 @@
     "sidebar":{
         "for_you":"Dành cho bạn",
         "followed":"Đang theo dõi",
-        "live":"Trực tiếp"
+        "live":"Trực tiếp",
+        "trend":"Xu hướng"
     },
     "notification":{
         "succeed":"Thành công !",
