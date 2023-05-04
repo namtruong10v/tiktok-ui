@@ -2,12 +2,28 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.scss';
+import AccountItem from '~/components/AccountItem';
+import { useEffect, useState } from 'react';
+import { collection, query, where, getDocs, getFirestore } from "firebase/firestore";
 
 const cx = classNames.bind(styles)
 
 function Sidebar() {
-
+    const db = getFirestore()
+    const [users, setUsers] = useState([])
     const { t } = useTranslation('common');
+
+    useEffect(() => {
+        const fetchApi = async () => {
+
+            const q = query(collection(db, "Users"))
+            const data = await getDocs(q);
+            setUsers(data.docs.map((doc) => doc))
+
+        }
+
+        fetchApi()
+    }, [])
     return (
         <aside className={cx('wrapper')}>
             <nav className={cx("tiktok-1rvr9ul-NavMainNavContainer")}>
@@ -47,7 +63,24 @@ function Sidebar() {
                         </div>
                     </li>
 
+
                 </ul>
+                <div className={cx('account_sidebar')}>
+                    <span className={cx("title_account_user")}>{t('sidebar.account')}</span>
+                    <div className={cx('account_user-box')}>
+                        {users.map((result, index) => {
+                            if (result.data()) {
+                                return <AccountItem key={index} data={result.data()} />
+                            } else {
+
+                                return false;
+
+                            }
+
+                        })}
+                    </div>
+
+                </div>
             </nav>
         </aside>
     )

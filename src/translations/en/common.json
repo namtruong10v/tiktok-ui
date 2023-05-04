@@ -17,7 +17,8 @@
         "for_you":"For you",
         "followed":"Followed",
         "live":"Live",
-        "trend":"trend"
+        "trend":"trend",
+        "account":"User Account"
     },
     "notification":{
         "succeed":"Successfully !",

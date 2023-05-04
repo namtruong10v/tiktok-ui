@@ -35,5 +35,18 @@
                 }
             }
         }
+        .account_sidebar {
+            border-top: 1px solid #ccc;
+            .title_account_user {
+                font-size: 18px;
+                font-weight: bold;
+                display: block;
+                margin: 20px 0px;
+            }
+            .account_user-box {
+                max-height: 500px;
+                overflow-y: scroll;
+            }
+        }
     }
 }
