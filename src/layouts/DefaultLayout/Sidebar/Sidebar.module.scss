@@ -37,6 +37,7 @@
         }
         .account_sidebar {
             border-top: 1px solid #ccc;
+            width: 300px;
             .title_account_user {
                 font-size: 18px;
                 font-weight: bold;
@@ -46,6 +47,7 @@
             .account_user-box {
                 max-height: 40vh;
                 overflow-y: scroll;
+                margin-left: -16px;
             }
         }
     }
