@@ -14,6 +14,7 @@ import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firesto
 import { uploadVideo } from "~/firebase";
 import { faPencilSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { openNotificationSuccess } from '~/components/Notification';
+import { useTranslation } from 'react-i18next';
 
 
 const cx = classNames.bind(styles);
@@ -23,7 +24,8 @@ const cx = classNames.bind(styles);
 
 function Profile() {
 
-    const navigate = useNavigate()
+    const { t } = useTranslation('common')
+
     const currentUser = useAuth();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -100,7 +102,7 @@ function Profile() {
     const handleSubmitEditProfile = async (e) => {
         try {
             updateProfileUser(photo, currentUser, loading, nameUser);
-            openNotificationSuccess('topRight', "Thành công !", "Cập nhật hồ sơ thành công !");
+            openNotificationSuccess('topRight', `${t('notification.succeed')}`, `${t('page_profile_admin.profile_update_successful')}`);
 
 
         } catch (error) {
@@ -123,7 +125,7 @@ function Profile() {
     const deleteVideo = async (id) => {
         await deleteDoc(doc(firestore, "postVideo", `${id}`));
         fechVideo();
-        openNotificationSuccess('topRight', "Thành công !", "Video của bạn đã được xóa");
+        openNotificationSuccess('topRight', `${t('notification.succeed')}`, `${t('page_profile_admin.your_video_has_been_removed')}`);
         setIsModalOpenDelect(false)
 
     }
@@ -175,7 +177,7 @@ function Profile() {
             "src_video": videoEdited
         });
         setLoading(false);
-        openNotificationSuccess('topRight', 'Thành công', 'Video của bạn đã được sửa thành công !')
+        openNotificationSuccess('topRight', `${t('notification.succeed')}`, `${t('page_profile_admin.your_video_has_been_edited')}`)
         setIsModalOpenEdit(false);
         fechVideo()
 
@@ -207,9 +209,9 @@ function Profile() {
 
                                 <button className={cx('actions', 'action-btn', 'action-outline', 'btn-edit-profile')} onClick={showModal}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" width="1em" height="1em" className="tiktok-l7zpu2-StyledEditIcon e33dl3i2"><path fill="currentColor" fillRule="evenodd" d="M15.393 2.226a.842.842 0 00-1.17.02L8.142 8.33a.842.842 0 00-.247.595v2.34c0 .464.377.841.842.841h2.183a.842.842 0 00.596-.246l6.237-6.238a.843.843 0 00-.02-1.211l-2.34-2.184zM9.58 9.273l5.26-5.26 1.107 1.033-5.374 5.375h-.993V9.273zM9.58 2c.232 0 .42.189.42.421v.842a.421.421 0 01-.42.421H4.526a.842.842 0 00-.842.842v10.948c0 .465.377.842.842.842h10.947a.842.842 0 00.842-.842V10.42c0-.232.189-.421.421-.421h.842c.233 0 .422.188.422.421v5.053A2.526 2.526 0 0115.473 18H4.526A2.526 2.526 0 012 15.474V4.526A2.526 2.526 0 014.526 2H9.58z" clipRule="evenodd" /></svg>
-                                    <span style={{ marginLeft: 5 }}> Sửa hồ sơ</span>
+                                    <span style={{ marginLeft: 5 }}>{t('page_profile_admin.edit_profile')}</span>
                                 </button>
-                                <Modal title="Sửa hồ sơ" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                                <Modal title={t('page_profile_admin.edit_profile')} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
 
                                     <div className={cx('wrapper_modal')}>
                                         <form onSubmit={handleSubmitEditProfile}>
@@ -221,7 +223,7 @@ function Profile() {
                                                 <input type='file' className={cx('input-avatar_change')} onChange={handleChange} accept="image/*" />
                                             </div>
                                             <Input data={currentUser.email} disabled={true} label='Tiktok ID' type='text' />
-                                            <Input data={nameUser} label='Họ và Tên' type='text' placeholder='Họ và tên...' setData={setNameUser} />
+                                            <Input data={nameUser} label={t('page_profile_admin.full_name')} type='text' placeholder={t('page_profile_admin.full_name')} setData={setNameUser} />
 
                                         </form>
 
@@ -233,7 +235,7 @@ function Profile() {
 
                         </div>
 
-                        <h2>Video của bạn</h2>
+                        <h2>{t('page_profile_admin.video_your')}</h2>
 
                         <div className={cx('video-user_list')}>
 
@@ -246,7 +248,7 @@ function Profile() {
                                         </video>
                                         <Tippy
                                             delay={[0, 300]}
-                                            content='Xóa video'
+                                            content={t('page_profile_admin.detele_video')}
                                             placement='left'
                                         >
                                             <button key={index} onClick={() => { getDataIdVideoDelect(video.id) }} className={cx('deleteVideo_user')}><FontAwesomeIcon icon={faTrash} /></button>
@@ -257,7 +259,7 @@ function Profile() {
 
                                         <Tippy
                                             delay={[0, 300]}
-                                            content='Sửa video'
+                                            content={t('page_profile_admin.edit_video')}
                                             placement='left'
                                         >
                                             <button onClick={() => { editVideo(video.id, video.data()) }} key={index} className={cx('editVideo_user')}><FontAwesomeIcon icon={faPencilSquare} /></button>
@@ -277,7 +279,7 @@ function Profile() {
                                         <div className={cx('change-flies-box')}>
                                             <video className={cx('video-preview')} playsInline muted controls src={videoEdited} > </video>
                                             <input onChange={handleChangeVideo} type='file' accept="video/*" />
-                                            <input className={cx('description_video')} value={titleVideoEdit} onChange={(e) => { setTitleVideoEdit(e.target.value) }} type='text' placeholder="Mô tả Video" />
+                                            <input className={cx('description_video')} value={titleVideoEdit} onChange={(e) => { setTitleVideoEdit(e.target.value) }} type='text' placeholder={t('page_upload_video.description_this_vd')} />
                                             <Select
                                                 mode="tags"
                                                 style={{
@@ -296,8 +298,8 @@ function Profile() {
 
                             </Modal>
 
-                            <Modal title="Xóa video ?" open={isModalOpenDelect} onOk={() => { deleteVideo(filedId) }} onCancel={handleCancelDelect}>
-                                <p>Bạn có muốn xóa video này không ?</p>
+                            <Modal title={t('page_profile_admin.detele_video')} open={isModalOpenDelect} onOk={() => { deleteVideo(filedId) }} onCancel={handleCancelDelect}>
+                                <p>{t('page_profile_admin.do_you_want_remove_video')}</p>
                             </Modal>
 
                         </div>
@@ -306,7 +308,7 @@ function Profile() {
 
 
                     :
-                    <Link to='/login'>Bạn chưa đăng nhập, Đăng nhập ngay</Link>
+                    <Link to='/login'>{t('page_profile_admin.you_are_not_logged_in')}</Link>
             }
         </div>
 

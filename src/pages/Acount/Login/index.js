@@ -12,11 +12,14 @@ import app from '~/firebase';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail, FacebookAuthProvider } from "firebase/auth";
 import { addUsertoDB } from '~/firebase';
 import { Input2 } from '~/components/Input';
+import { useTranslation } from 'react-i18next';
 
 const auth = getAuth(app);
 const cx = classNames.bind(styles)
 
 function Login() {
+  const { t } = useTranslation('common')
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [emailXT, setEmailXT] = useState()
 
@@ -38,7 +41,7 @@ function Login() {
         }
         addUsertoDB(dataUser)
 
-        openNotificationSuccess('topRight', 'Đăng nhập thành công', 'Chào mừng bạn quay trở lại !');
+        openNotificationSuccess('topRight', `${t('notification.logged_successful')}`, `${t('page_login.welcome_back')}`);
         navigate('/')
 
       })
@@ -49,13 +52,13 @@ function Login() {
 
         switch (errorCode) {
           case 'auth/user-not-found':
-            openNotificationErorr('topRight', 'Không tìm thấy email', 'Email có vẻ như sai hoặc chưa đăng ký, vui lòng thử lại !');
+            openNotificationErorr('topRight', `${t('page_login.email_not_found')}`, `${t('page_login.email_not_registered')}`);
             break;
           case 'auth/wrong-password':
-            openNotificationErorr('topRight', 'Sai mật khẩu', 'Mật khẩu của bạn chưa đúng, vui lòng thử lại');
+            openNotificationErorr('topRight', `${t('page_login.wrong_password')}`, `${t('page_login.your_password_is_not_correcty')}`);
             break;
           default:
-            openNotificationErorr('topRight', 'Email hoặc mật khẩu không đúng', 'Email hoặc mật khẩu của bạn chưa đúng, vui lòng thử lại');
+            openNotificationErorr('topRight', `${t('page_login.email_or_password_is_incorrect')}`, `${t('page_login.email_or_password_is_incorrect_again')}`);
         }
       });
 
@@ -87,7 +90,7 @@ function Login() {
         }
         addUsertoDB(dataUser)
 
-        openNotificationSuccess('topRight', 'Đăng nhập thành công', 'Chúc mừng bạn đã đăng nhập thành công bằng tài khoản Google !');
+        openNotificationSuccess('topRight', `${t('notification.logged_successful')}`, `${t('page_login.login_with_account_google_success')}`);
 
         navigate('/')
 
@@ -142,7 +145,7 @@ function Login() {
 
     sendPasswordResetEmail(auth, emailXT)
       .then(() => {
-        openNotificationSuccess('topRight', 'Thành công', 'Mã xác nhận đã gửi vào Email của bạn, Vui lòng kiểm tra!');
+        openNotificationSuccess('topRight', `${t('notification.succeed')}`, `${t('page_login.verification_code_sent_to_your_email')}`);
         // Password reset email sent!
         // ..
       })
@@ -211,30 +214,30 @@ function Login() {
 
       <Form.Item >
         <div style={{ marginBottom: 15 }} className={cx('forgotPass')} >
-          <a onClick={showModal}>Forgot password</a>
-          <Modal title="Quên mật khẩu " open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+          <a onClick={showModal}>{t('page_login.forgot_password')}</a>
+          <Modal title={t('page_login.forgot_password')} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
 
             <div className={cx('wrapper_modal')}>
 
-              <Input2 data={emailXT} label='Email xác thực' type='text' setData={setEmailXT} />
+              <Input2 data={emailXT} label={t('page_login.verification_email')} type='text' setData={setEmailXT} />
 
             </div>
 
           </Modal>
-          <Link to={config.routes.register}>Register now!</Link>
+          <Link to={config.routes.register}>{t('page_login.register_now')}</Link>
 
         </div>
         <div style={{ marginBottom: 15 }}>
           <button onClick={loginFacebookHandel} className={cx('button-login-width-social-fb')}>
             <img src={images.facebook} style={{ marginRight: 15 }} />
-            <span> Đăng nhập với FaceBook</span>
+            <span>{t("page_login.sign_in_with_facebook")}</span>
 
           </button>
         </div>
         <div style={{ marginBottom: 15 }}>
           <button onClick={loginGoogleHandel} className={cx('button-login-width-social-gg')}>
             <img src={images.google} style={{ marginRight: 15 }} />
-            <span> Đăng nhập với Google</span>
+            <span>{t('page_login.sign_in_with_google')}</span>
           </button>
         </div>
 
@@ -244,7 +247,7 @@ function Login() {
 
 
         <Button className={cx('button-sumbit')} type="primary" htmlType="submit">
-          Login
+          {t('header.login')}
         </Button>
       </Form.Item>
     </Form>

@@ -10,13 +10,14 @@ import Button from '~/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { openNotificationSuccess } from '~/components/Notification';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles)
 
 
 function Profile() {
 
-
+    const { t } = useTranslation('common');
     let { id } = useParams();
     const [videos, setVideos] = useState([]);
     const [user, setUser] = useState([])
@@ -44,7 +45,7 @@ function Profile() {
 
     // handle follow 
     const handleFollow = () => {
-        openNotificationSuccess('topRight', 'Thành công !', 'Follow người dùng này thành công !')
+        openNotificationSuccess('topRight', `${t('notification.succeed')}`, `${t('page_home_video_component.follow_succeed')}`);
     }
 
     return (
@@ -61,7 +62,7 @@ function Profile() {
                             <p className={cx('name_infor_name_acount')} >{item.data().user.displayName} <FontAwesomeIcon className={cx('icon-check')} icon={faCheckCircle} /></p>
                             <p className={cx('name_infor_nickname')} >{item.data().user.email}</p>
                             <Button onClick={handleFollow} primary className={cx('primary', 'large')}  >
-                                Follow
+                                {t('page_home_video_component.follow')}
                             </Button>
                         </div>
 
@@ -76,7 +77,7 @@ function Profile() {
             </div>
 
 
-            <div className={cx('title')}>DANH SÁCH VIDEO</div>
+            <div className={cx('title')}>{t('page_profile_user.list_video')}</div>
             <div className={cx('video-flex-box')}>
 
 

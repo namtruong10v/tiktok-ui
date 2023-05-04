@@ -17,7 +17,8 @@
     "notification":{
         "succeed":"Thành công !",
         "failed":"Thất bại !",
-        "something_went_wrong":"Dường như đã có lỗi sảy ra !"
+        "something_went_wrong":"Dường như đã có lỗi sảy ra !",
+        "logged_successful":"Đăng nhập thành công !"
     },
     "page_home_video_component":{
         "please_login":"Vui lòng đăng nhập",
@@ -44,5 +45,43 @@
         "less_than_2GB":"Nhỏ hơn 2 GB",
         "select_file":"Chọn tập tin",
         "description_this_vd":"Mô tả cho video này"
+    },
+    "page_login":{
+       "welcome_back":"Chào mừng bạn quay trở lại",
+       "email_not_found":"Không tìm thấy email",
+       "email_not_registered":"Email có vẻ như sai hoặc chưa đăng ký, vui lòng thử lại !",
+       "wrong_password":"Sai mật khẩu !",
+       "your_password_is_not_correcty":"Mật khẩu của bạn chưa đúng, vui lòng thử lại",
+       "email_or_password_is_incorrect":"Email hoặc mật khẩu không đúng",
+       "email_or_password_is_incorrect_again":"Email hoặc mật khẩu của bạn chưa đúng, vui lòng thử lại",
+       "login_with_account_google_success":"Bạn đã đăng nhập thành công bằng tài khoản Google !",
+       "verification_code_sent_to_your_email":"Mã xác nhận đã gửi vào Email của bạn, Vui lòng kiểm tra !",
+       "forgot_password":"Quên mật khẩu",
+       "register_now":"Đăng ký ngay bây giờ",
+       "sign_in_with_facebook":"Đăng nhập với Facebook",
+       "sign_in_with_google":"Đăng nhập với Google",
+       "verification_email":"Email xác thực"
+    },
+    "page_register": {
+        "Sign Up Success":"Đăng ký thành công !",
+        "congratulations_on_your_successful_registration":"Chúc mừng bạn đã đăng ký thành công !",
+        "email_already_exists":"Email đã tồn tại",
+        "login_now":"Đăng nhập ngay bây giờ",
+        "register":"Đăng ký"
+    },
+    "page_profile_admin": {
+        "profile_update_successful!":"Cập nhật hồ sơ thành công !",
+        "your_video_has_been_removed":"Video của bạn đã được xóa",
+        "your_video_has_been_edited":"Video của bạn đã được sửa thành công !",
+        "edit_profile":"Sửa hồ sơ",
+        "full_name":"Họ và tên",
+        "video_your":"Video của bạn",
+        "detele_video":"Xóa video",
+        "edit_video":"Sửa video",
+        "do_you_want_remove_video":"Bạn có muốn xóa video này không ?",
+        "you_are_not_logged_in":"Bạn chưa đăng nhập, Đăng nhập ngay"
+    },
+    "page_profile_user":{
+        "list_video":"Danh sách video"
     }
 }
