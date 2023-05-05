@@ -89,5 +89,8 @@
     },
     "page_profile_user":{
         "list_video":"Danh sách video"
+    },
+    "page_live":{
+        "doingUpdate":"Tính năng này đang phát triển !"
     }
 }

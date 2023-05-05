@@ -1,7 +1,13 @@
+import { useTranslation } from "react-i18next";
+
 function Live() {
-    return ( 
-        <h2>Live page</h2>
-     );
+    const { t } = useTranslation('common')
+    return (
+        <div>
+            <h2>{t('page_live.doingUpdate')}</h2>
+        </div>
+
+    );
 }
 
 export default Live;

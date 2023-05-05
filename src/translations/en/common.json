@@ -89,5 +89,8 @@
     },
     "page_profile_user":{
         "list_video":"List video"
+    },
+    "page_live":{
+        "doingUpdate":"This feature is in development !"
     }
 }

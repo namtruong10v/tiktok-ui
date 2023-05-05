@@ -9,7 +9,7 @@ import styles from './AccountID.Module.scss'
 import Button from '~/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { openNotificationSuccess } from '~/components/Notification';
+import { openNotificationErorr } from '~/components/Notification';
 import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles)
@@ -45,7 +45,7 @@ function Profile() {
 
     // handle follow 
     const handleFollow = () => {
-        openNotificationSuccess('topRight', `${t('notification.succeed')}`, `${t('page_home_video_component.follow_succeed')}`);
+        openNotificationErorr('topRight', `${t('notification.failed')}`, `${t('page_live.doingUpdate')}`);
     }
 
     return (

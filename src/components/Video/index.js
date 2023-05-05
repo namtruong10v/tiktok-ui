@@ -9,7 +9,7 @@ import styles from './Video.module.scss';
 import classNames from 'classnames/bind';
 import Button from '../Button';
 import images from '~/assets/images';
-import { openNotificationSuccess } from '~/components/Notification'
+import { openNotificationErorr } from '~/components/Notification'
 
 import { doc, updateDoc, arrayUnion, arrayRemove, onSnapshot } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
@@ -166,7 +166,7 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
 
     // handle follow
     const handeFollow = () => {
-        openNotificationSuccess('topRight', `${t('notification.succeed')}`, `${t('page_home_video_component.follow_succeed')}`);
+        openNotificationErorr('topRight', `${t('notification.failed')}`, `${t('page_live.doingUpdate')}`);
     }
 
 
