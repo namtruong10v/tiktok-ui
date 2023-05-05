@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from '~/App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from '~/components/GlobalStyles/index';
+import { ThemeProvider } from "~/context/Provider";
 
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
@@ -29,7 +30,9 @@ root.render(
   // <React.StrictMode>
   <I18nextProvider i18n={i18next}>
     <GlobalStyles>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </GlobalStyles>
   </I18nextProvider>
 

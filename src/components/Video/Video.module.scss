@@ -48,6 +48,7 @@
             .video-recomend-content {
                 display: inline;
                 font-weight: 400;
+                color: var(--text-color);
             }
             .video-recomend-tag {
                 display: inline-block;
@@ -65,14 +66,14 @@
             height: 70vh;
             object-fit: contain;
             border-radius: 8px;
-            background-color: black;
+            background-color: var(--text-color);
         }
         .action-of-video {
             margin-left: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-
+            color: var(--text-color);
             button {
                 display: -webkit-box;
                 display: -webkit-flex;
@@ -92,7 +93,7 @@
                 border-radius: 50%;
                 -webkit-transition: all ease-in-out 200ms;
                 transition: all ease-in-out 200ms;
-                background-color: rgba(22, 24, 35, 0.06);
+                background-color: var(--background-button);
                 margin-top: 8px;
                 margin-bottom: 6px;
                 cursor: pointer;

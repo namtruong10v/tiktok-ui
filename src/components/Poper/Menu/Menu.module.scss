@@ -1,56 +1,52 @@
 // Menu items
 
-.menu-list{
-     width: 224px;
+.menu-list {
+    width: 224px;
 
-     .menu-item{
+    .menu-item {
         margin-left: 0;
     }
-
 }
 .menu-poper {
     padding-bottom: 8px;
 }
-.menu-item{
+.menu-item {
     width: 100%;
     justify-content: flex-start;
     border-radius: 0;
     line-height: 1.8rem;
-
-    &:hover{
+    color: black !important;
+    &:hover {
         background: rgba(22, 24, 35, 0.03);
-
     }
-    &.separate{
-        border-top: 1px solid rgba(22, 24, 35, 0.12)
+    &.separate {
+        border-top: 1px solid rgba(22, 24, 35, 0.12);
     }
-   
 }
-
 
 // Header
 
-.header{
+.header {
     position: relative;
     height: 50px;
     margin-top: -8px;
     flex-shrink: 0;
 }
 
-.back-btn{
+.back-btn {
     width: 50px;
     height: 100%;
     background-color: transparent;
     cursor: pointer;
 }
 
-.title{
+.title {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
-.wrapper-menu-item{
+.wrapper-menu-item {
     overflow-y: auto;
 }

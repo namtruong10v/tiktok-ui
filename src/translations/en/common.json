@@ -1,6 +1,6 @@
 {
     "header": {
-        "search": "Search account and videos",
+        "search": "Search...",
         "upload":"Upload",
         "uploadVideo":"Upload video",
         "message":"Message",
@@ -17,7 +17,7 @@
         "for_you":"For you",
         "followed":"Followed",
         "live":"Live",
-        "trend":"trend",
+        "trend":"Trend",
         "account_recomment":"Recommended account"
     },
     "notification":{

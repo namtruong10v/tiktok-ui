@@ -167,93 +167,95 @@ function Register() {
   }
 
   return (
+    <>
 
-    <Form
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      style={{
-        maxWidth: 600,
-        marginTop: '100px'
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <h2>Register</h2>
-      <Form.Item
-
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
-        ]}
+      <h2 style={{ marginTop: 15 }}> Register</h2>
+      <Form
+        name="basic"
+        labelCol={{
+          span: 8,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+        style={{
+          maxWidth: 600,
+          marginTop: '20px'
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
       >
-        <Input width={'100%'} size="large" placeholder="Email" prefix={<UserOutlined />} />
-      </Form.Item>
+        <Form.Item
 
-      <Form.Item
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your username!',
+            },
+          ]}
+        >
+          <Input width={'100%'} size="large" placeholder="Email" prefix={<UserOutlined />} />
+        </Form.Item>
 
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password size="large" placeholder="Password" prefix={<LockOutlined />} />
-      </Form.Item>
+        <Form.Item
 
-
-
-      <Form.Item >
-        <div style={{ marginBottom: 15 }} className={cx('forgotPass')} >
-          <a onClick={showModal}>{t('page_login.forgot_password')}</a>
-          <Modal title={t('page_login.forgot_password')} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-
-            <div className={cx('wrapper_modal')}>
-
-              <Input2 data={emailXT} label={t('page_login.verification_email')} type='text' setData={setEmailXT} />
-
-            </div>
-
-          </Modal>
-          <Link to={config.routes.login}>{t('page_register.login_now')}</Link>
-        </div>
-        <div style={{ marginBottom: 15 }}>
-          <button onClick={loginFacebookHandel} className={cx('button-login-width-social-fb')}>
-            <img src={images.facebook} style={{ marginRight: 15 }} />
-            <span>{t("page_login.sign_in_with_facebook")}</span>
-
-          </button>
-        </div>
-        <div style={{ marginBottom: 15 }}>
-          <button onClick={loginGoogleHandel} className={cx('button-login-width-social-gg')}>
-            <img src={images.google} style={{ marginRight: 15 }} />
-            <span>{t('page_login.sign_in_with_google')}</span>
-          </button>
-        </div>
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your password!',
+            },
+          ]}
+        >
+          <Input.Password size="large" placeholder="Password" prefix={<LockOutlined />} />
+        </Form.Item>
 
 
 
+        <Form.Item >
+          <div style={{ marginBottom: 15 }} className={cx('forgotPass')} >
+            <a onClick={showModal}>{t('page_login.forgot_password')}</a>
+            <Modal title={t('page_login.forgot_password')} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+
+              <div className={cx('wrapper_modal')}>
+
+                <Input2 data={emailXT} label={t('page_login.verification_email')} type='text' setData={setEmailXT} />
+
+              </div>
+
+            </Modal>
+            <Link to={config.routes.login}>{t('page_register.login_now')}</Link>
+          </div>
+          <div style={{ marginBottom: 15 }}>
+            <button onClick={loginFacebookHandel} className={cx('button-login-width-social-fb')}>
+              <img src={images.facebook} style={{ marginRight: 15 }} />
+              <span>{t("page_login.sign_in_with_facebook")}</span>
+
+            </button>
+          </div>
+          <div style={{ marginBottom: 15 }}>
+            <button onClick={loginGoogleHandel} className={cx('button-login-width-social-gg')}>
+              <img src={images.google} style={{ marginRight: 15 }} />
+              <span>{t('page_login.sign_in_with_google')}</span>
+            </button>
+          </div>
 
 
 
-        <Button className={cx('button-sumbit')} type="primary" htmlType="submit">
-          {t('page_register.register')}
-        </Button>
-      </Form.Item>
-    </Form>
+
+
+
+          <Button className={cx('button-sumbit')} type="primary" htmlType="submit">
+            {t('page_register.register')}
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   )
 }
 

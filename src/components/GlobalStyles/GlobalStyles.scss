@@ -8,6 +8,11 @@
    --text-color: #333;
    --font-family: "K2D", sans-serif;
    --font-family2: "ProximaNova", sans-serif;
+   --color-opacity: rgba(22, 24, 35, 0.5);
+   --background-button: rgba(22, 24, 35, 0.06);
+   --main-color: #000;
+   --fillter: invert(1);
+   --background-search: #fff;
 
    // default layout
    --default-layout-header-height: 60px;
@@ -27,7 +32,7 @@ body {
    font-size: 1.6rem;
    line-height: 1.5;
    text-rendering: optimizeSpeed;
-   color: var(--text-color);
+   // color: var(--text-color);
    //  background: rgba(18, 18, 18, 1);
 }
 button,
@@ -35,6 +40,23 @@ input,
 [tabindex] {
    border: none;
    outline: none;
+}
+
+#App_dnt_reacjs.light {
+   background-color: var(--white);
+   color: var(--black);
+   --hover-background-search: rgba(22, 24, 35, 0.03);
+}
+#App_dnt_reacjs.dark {
+   --hover-background-search: rgba(0, 0, 0, 0.5);
+   --background-search: #000;
+   --main-color: #fff;
+   --text-color: #f9f9f9;
+   --color-opacity: rgb(10 219 204 / 88%);
+   --background-button: var(--white);
+   background-color: var(--black);
+   color: var(--white);
+   --fillter: none;
 }
 a[href] {
    color: var(--text-color);

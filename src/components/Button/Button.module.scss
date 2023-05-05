@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -6,59 +6,60 @@
     font-weight: 700;
     min-width: 100px;
     border-radius: 4px;
-    padding:11px 16px;
+    padding: 11px 16px;
     cursor: pointer;
-    background-color: var(--white);
-    border:1px solid transparent;
+    background-color: transparent;
+    border: 1px solid transparent;
     font-family: var(--font-family);
 
     // 2 nút đứng cạnh nhau
     + .wrapper {
         margin-left: 8px;
     }
-    &.disabled{
+    &.disabled {
         pointer-events: none;
         opacity: 0.5;
     }
 }
 
-.rounded{
+.rounded {
     border-radius: 999px;
     box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
-    border-color: rgba(22, 24, 35, .12);
+    border-color: rgba(22, 24, 35, 0.12);
     background-color: rgba(255, 255, 255, 1);
-    &:hover{
-        border-color: rgba(22, 24, 35, .2);
+    &:hover {
+        border-color: rgba(22, 24, 35, 0.2);
         background-color: rgba(255, 255, 255, 1);
     }
 }
-.primary{
+.primary {
     background-color: var(--primary);
-    color:var(--white);
-    border-color:var(--primary);
-    &:hover{
-        border-color:var(--primary);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),#FE2C55;
+    color: var(--white);
+    border-color: var(--primary);
+    &:hover {
+        border-color: var(--primary);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
     }
 }
-.outline{
-    border-color:currentColor;
+.outline {
+    border-color: currentColor;
     color: var(--primary);
-    &:hover{
-        border-color:currentColor;
+    &:hover {
+        border-color: currentColor;
         background-color: rgba(254, 44, 85, 0.06);
     }
 }
-.text{
-    &:hover{
+.text {
+    &:hover {
         text-decoration: underline;
     }
 }
 
- .icon + .title, .title + .icon{
-     margin-left: 8px;
- }
-.icon{
+.icon + .title,
+.title + .icon {
+    margin-left: 8px;
+}
+.icon {
     display: inline-block;
     width: 24px;
     text-align: center;
@@ -67,11 +68,11 @@
 // Disable
 
 // Button sizes
-.small{
-    min-width:88px ;
+.small {
+    min-width: 88px;
     padding: 4px 16px;
 }
-.large{
+.large {
     min-width: 140px;
     padding: 14px 16px;
 }

@@ -1,28 +1,29 @@
-.wrapper{
+.wrapper {
     padding: 9px 16px;
     cursor: pointer;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    
-    &:hover{
+    background-color: var(--background-search);
+
+    &:hover {
         cursor: pointer;
-        background: rgba(22, 24, 35, 0.03);
+        background: var(--hover-background-search);
     }
 }
 
-.avatar{
+.avatar {
     width: 40px;
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
     margin: 0px 12px 0px 0px;
 }
-.info{
+.info {
     flex: 0 1 auto;
     min-width: 0px;
 }
-.name{
+.name {
     font-size: 1.6rem;
     line-height: 22px;
     font-weight: 600;
@@ -30,22 +31,22 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    .icon-check{
-      color:  rgb(32, 213, 236);
-       width: 14px;
-       height: 14px;
-       margin-left: 6px;
+    .icon-check {
+        color: rgb(32, 213, 236);
+        width: 14px;
+        height: 14px;
+        margin-left: 6px;
     }
 }
-.ussername{
+.ussername {
     font-size: 1.4rem;
     line-height: 20px;
-    color: rgba(22, 24, 35, 0.5);
+    color: var(--color-opacity);
     font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 // .large{
-    
+
 // }

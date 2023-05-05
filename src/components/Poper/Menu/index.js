@@ -1,7 +1,8 @@
 import Tippy from "@tippyjs/react/headless";
 import classNames from "classnames/bind";
 import styles from './Menu.module.scss';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "~/context/Provider";
 
 import { Wrapper as PopperWrapper } from "~/components/Poper";
 import MenuItem from "./MenuItem";
@@ -21,6 +22,8 @@ const cx = classNames.bind(styles)
 const defaultOnchange = () => { }
 
 function Menu({ items = [], children, hideOnClick = false, onChange = defaultOnchange }) {
+
+    const { handleModeTheme } = useContext(ThemeContext);
 
     const { t, i18n } = useTranslation('common');
 
@@ -52,12 +55,21 @@ function Menu({ items = [], children, hideOnClick = false, onChange = defaultOnc
                                 // An error happened.
                             });
                     };
+                    // change language
                     if (item.code == 'vn') {
                         i18n.changeLanguage('vn')
                     }
                     if (item.code == 'en') {
                         i18n.changeLanguage('en')
                     }
+                    // change theme mode
+                    if (item.code == 'dark') {
+                        handleModeTheme.darkMode()
+                    }
+                    if (item.code == 'light') {
+                        handleModeTheme.lightMode()
+                    }
+
 
                 }
             }} />
