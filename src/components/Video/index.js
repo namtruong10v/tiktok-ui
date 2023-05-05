@@ -156,12 +156,12 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
     }
 
 
-    const handleLikeComment = async (cmt) => {
-        console.log(cmt);
-        // if (cmt) {
-        //     setHeartCommnet(cmt.hearts + 1, 'hahaha')
-        // }
-    }
+    // const handleLikeComment = async (cmt) => {
+    //     console.log(cmt);
+    //     // if (cmt) {
+    //     //     setHeartCommnet(cmt.hearts + 1, 'hahaha')
+    //     // }
+    // }
 
 
     // handle follow
@@ -318,8 +318,8 @@ function Video({ id, title, account, music, hastag = {}, src_video, tick, hearts
                                                     currentUser.uid === comment.account && (<button onClick={() => { getDataDelectComment(comment) }}>{t('page_home_video_component.delete')}</button>)
                                                 }
 
-                                                <button onClick={() => { handleLikeComment(comment) }}>{t('page_home_video_component.like')}</button>
-                                                <button >{t('page_home_video_component.reply')}</button>
+                                                <button onClick={() => { openNotificationErorr('topRight', `${t('notification.failed')}`, `${t('page_live.doingUpdate')}`) }}>{t('page_home_video_component.like')}</button>
+                                                <button onClick={() => { openNotificationErorr('topRight', `${t('notification.failed')}`, `${t('page_live.doingUpdate')}`) }} >{t('page_home_video_component.reply')}</button>
 
                                             </div>
                                         </div>
