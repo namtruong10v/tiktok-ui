@@ -13,6 +13,7 @@
    --main-color: #000;
    --fillter: invert(1);
    --background-search: #fff;
+   --background-header: #fff;
 
    // default layout
    --default-layout-header-height: 60px;
@@ -48,6 +49,7 @@ input,
    --hover-background-search: rgba(22, 24, 35, 0.03);
 }
 #App_dnt_reacjs.dark {
+   --background-header: #000;
    --hover-background-search: rgba(0, 0, 0, 0.5);
    --background-search: #000;
    --main-color: #fff;
